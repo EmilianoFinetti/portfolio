@@ -1,0 +1,144 @@
+/* Modern Portfolio Styling - Light & Dark Mode Support */
+
+/* CSS Variables for Light/Dark Mode Adaptability */
+:root {
+    --bg-color: #fcfcfc;
+    --text-color: #333;
+    --heading-color: #111;
+    --card-bg: #ffffff;
+    --card-border: rgba(0,0,0,0.06);
+    --card-shadow: rgba(0,0,0,0.03);
+    --skill-bg: #ffffff;
+    --muted-custom: #55595c;
+    --footer-bg: #f8f9fa;
+    --hero-bg: #ffffff;
+    --img-bg: #f8f9fa;
+    --profile-border: #ffffff;
+}
+
+[data-bs-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --card-bg: #1e1e1e;
+    --card-border: rgba(255,255,255,0.08);
+    --card-shadow: rgba(0,0,0,0.2);
+    --skill-bg: #222222;
+    --muted-custom: #a0a0a0;
+    --footer-bg: #0a0a0a;
+    --hero-bg: #121212;
+    --img-bg: #1a1a1a;
+    --profile-border: #1e1e1e;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Typography & Links */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color) !important;
+    font-weight: 700;
+}
+
+a {
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #0a58ca;
+}
+
+/* Profile Image */
+.profile-img {
+    border-color: var(--profile-border) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Modern Cards */
+.hover-card, .project-card, .education-card {
+    background-color: var(--card-bg) !important;
+    border-radius: 16px;
+    border: 1px solid var(--card-border) !important;
+    box-shadow: 0 4px 6px -1px var(--card-shadow), 0 2px 4px -1px var(--card-shadow);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover, .education-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Project Images */
+.project-card .card-img-top {
+    background-color: var(--img-bg);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.project-card .bg-primary {
+    background-color: #0d6efd !important;
+}
+
+.project-img {
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.05);
+}
+
+/* Skill Items */
+.skill-item {
+    background-color: var(--skill-bg);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid #0d6efd;
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--hero-bg);
+    border-bottom: 1px solid var(--card-border);
+}
+
+/* Education logos */
+.education-card .bg-white {
+    /* Keep logos on white background always */
+    background-color: #ffffff !important;
+}
+
+/* Custom Utilities */
+.text-muted-custom {
+    color: var(--muted-custom) !important;
+}
+.text-dark {
+    color: var(--heading-color) !important;
+}
+.bg-primary-subtle {
+    background-color: rgba(13, 110, 253, 0.15) !important;
+}
+
+footer {
+    background-color: var(--footer-bg) !important;
+    border-top-color: var(--card-border) !important;
+}
+
+/* Custom Outlined Button for Dark Mode Adaptability */
+.btn-outline-theme {
+    color: var(--text-color);
+    border: var(--bs-btn-border-width) solid var(--text-color);
+}
+.btn-outline-theme:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+footer {
+    background-color: var(--footer-bg) !important;
+    border-top-color: var(--card-border) !important;
+}
