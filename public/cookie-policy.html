@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy - Emiliano Finetti</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <!-- Theme Toggler Script -->
+    <script>
+        const updateTheme = () => {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-bs-theme', 'light');
+            }
+        };
+        updateTheme();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+    </script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- i18n Script -->
+    <script src="./assets/js/i18n.js" defer></script>
+</head>
+<body style="font-family: 'Inter', sans-serif;">
+    <header class="py-4 border-bottom mb-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h4 mb-0 fw-bold text-dark">Emiliano Finetti</h1>
+            <a href="index.html" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-medium">
+                <i class="fas fa-arrow-left me-2"></i> <span data-i18n="home_link">Back to Home</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container mb-5" style="max-width: 800px;">
+        <h2 class="mb-4 d-flex align-items-center gap-3 text-dark">
+            <i class="fas fa-cookie-bite text-primary fs-3"></i> 
+            <span data-i18n="cookie_policy_title">Cookie Policy</span>
+        </h2>
+        
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4 p-md-5">
+                <p class="fs-5 text-muted-custom mb-4" data-i18n="cookie_policy_intro" style="line-height: 1.7;">
+                    This website uses exclusively technical cookies necessary for its proper functioning. No profiling or third-party cookies are used to track user behavior.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3" data-i18n="cookie_tech_title">Technical Cookies</h3>
+                <p class="text-muted-custom mb-4" data-i18n="cookie_tech_desc" style="line-height: 1.6;">
+                    Technical cookies are necessary for the website to function. For example, we use a cookie to remember your preference regarding the informational banner closure.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3" data-i18n="cookie_disable_title">How to disable cookies</h3>
+                <p class="text-muted-custom mb-0" data-i18n="cookie_disable_desc" style="line-height: 1.6;">
+                    You can disable cookies directly from your browser settings. Please note that disabling technical cookies may affect some website features.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-5 mt-5 text-center text-muted-custom" style="background-color: #f8f9fa; border-top: 1px solid rgba(0,0,0,0.05);">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Emiliano Finetti | <span data-i18n="footer_text">Created with passion</span></p>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

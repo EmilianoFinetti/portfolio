@@ -12,11 +12,14 @@ const translations = {
         "skill_team": "Lavoro di Squadra",
         "skill_flex": "Flessibilità",
         "skill_data": "Data Analysis",
-        "projects_title": "Esperienze Professionali e Progetti",
+        "experience_title": "Esperienze Professionali",
+        "projects_title": "Progetti",
         "gong_role": "Sviluppatore Back-end | Set 2022 - Ago 2025",
         "gong_desc": "Sviluppo di un sistema gestionale per la somministrazione di mangime liquido negli allevamenti (Django/Python). Progettazione DB MySQL, unit test, CI/CD con GitHub Actions e redazione della documentazione tecnica.",
         "pmf_role": "IT & Data Analysis | Nov 2025 - In corso",
         "pmf_desc": "Sviluppo dell'infrastruttura IT e analisi avanzata dei dati di telemetria per prototipi motociclistici. Elaborazione e visualizzazione dei dati per supportare le scelte ingegneristiche e ottimizzare le performance in pista.",
+        "qt_role": "Sviluppatore",
+        "qt_desc": "Menzionato nel blog del gruppo Qt per la \"Edge AI Coffee Machine\", mostrando un sistema di riconoscimento facciale e vocale su MCU.",
         "scanner_role": "Developer",
         "scanner_desc": "Software cross-platform (C++/Qt) per il monitoraggio e l'analisi di pressioni superficiali in tempo reale. Gestione di flussi dati ad alta frequenza e visualizzazione grafica avanzata.",
         "kiwi_role": "Sviluppatore Web | Giu 2018 - Ago 2018",
@@ -27,7 +30,19 @@ const translations = {
         "edu_unitn_degree": "Laurea Triennale in Ingegneria Informatica, Elettronica e delle Comunicazioni",
         "edu_fermi_name": "Istituto Superiore Enrico Fermi, Mantova",
         "edu_fermi_degree": "Diploma di Liceo Scientifico - Scienze Applicate",
-        "footer_text": "Creato con passione"
+        "footer_text": "Creato con passione",
+        "cookie_banner_text": "Questo sito utilizza solo cookie tecnici per garantire una migliore esperienza di navigazione.",
+        "cookie_banner_btn": "Ho capito",
+        "cookie_banner_link": "Cookie Policy",
+        "cookie_policy_title": "Cookie Policy",
+        "cookie_policy_intro": "Questo sito web utilizza esclusivamente cookie tecnici necessari per il corretto funzionamento. Non vengono utilizzati cookie di profilazione o di terze parti per tracciare il comportamento degli utenti.",
+        "cookie_tech_title": "Cookie Tecnici",
+        "cookie_tech_desc": "I cookie tecnici sono necessari per il funzionamento del sito. Ad esempio, utilizziamo un cookie per ricordare la tua preferenza sulla chiusura del banner informativo.",
+        "cookie_disable_title": "Come disabilitare i cookie",
+        "cookie_disable_desc": "Puoi disabilitare i cookie direttamente dalle impostazioni del tuo browser. Tieni presente che la disattivazione dei cookie tecnici potrebbe compromettere alcune funzionalità del sito.",
+        "home_link": "Torna alla Home",
+        "404_heading": "Oops! Pagina non trovata.",
+        "404_text": "La pagina che stai cercando potrebbe essere stata rimossa, aver cambiato nome o essere temporaneamente non disponibile."
     }
 };
 

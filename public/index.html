@@ -3,7 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emiliano Finetti</title>
+    <meta name="description" content="Emiliano Finetti - Aspiring Computer Engineer at Politecnico di Milano & Back-end Developer. Passionate about complex systems, Python, Django, and C++.">
+    <meta name="keywords" content="Emiliano Finetti, Computer Engineer, Back-end Developer, Python, Django, C++, Politecnico di Milano, Software Engineering">
+    <meta name="author" content="Emiliano Finetti">
+    <title>Emiliano Finetti | Computer Engineer & Back-end Developer</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.emilianofinetti.com/">
+    
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.emilianofinetti.com/">
+    <meta property="og:title" content="Emiliano Finetti | Computer Engineer & Back-end Developer">
+    <meta property="og:description" content="Aspiring Computer Engineer at Politecnico di Milano & Back-end Developer. Passionate about complex systems, Python, Django, and C++.">
+    <meta property="og:image" content="https://www.emilianofinetti.com/assets/images/EmilianoFinetti.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.emilianofinetti.com/">
+    <meta property="twitter:title" content="Emiliano Finetti | Computer Engineer & Back-end Developer">
+    <meta property="twitter:description" content="Aspiring Computer Engineer at Politecnico di Milano & Back-end Developer. Passionate about complex systems, Python, Django, and C++.">
+    <meta property="twitter:image" content="https://www.emilianofinetti.com/assets/images/EmilianoFinetti.jpg">
+    
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Emiliano Finetti",
+      "url": "https://www.emilianofinetti.com/",
+      "image": "https://www.emilianofinetti.com/assets/images/EmilianoFinetti.jpg",
+      "jobTitle": "Computer Engineer & Back-end Developer",
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Politecnico di Milano"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Università di Trento"
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/emiliano-finetti/",
+        "https://github.com/EmilianoFinetti"
+      ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
     <!-- Theme Toggler Script -->
     <script>
         const updateTheme = () => {
@@ -65,7 +114,7 @@
                             <h3 class="card-title h5 text-dark fw-bold mb-4"><i class="fas fa-server me-2 text-primary"></i> <span data-i18n="skills_backend">Back-end & Languages</span></h3>
                             <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
                                 <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-python me-2 text-primary"></i> Python / Django</li>
-                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-cpp me-2 text-primary"></i> C / C++</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-code me-2 text-primary"></i> C / C++</li>
                                 <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-java me-2 text-primary"></i> Java / Kotlin</li>
                                 <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-node-js me-2 text-primary"></i> Node.js</li>
                                 <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-database me-2 text-primary"></i> MySQL</li>
@@ -104,25 +153,9 @@
             </div>
         </section>
 
-        <section class="projects mb-5 pb-4">
-            <h2 class="mb-4 d-flex align-items-center gap-3 text-dark"><i class="fas fa-briefcase text-primary fs-4"></i> <span data-i18n="projects_title">Work Experience & Projects</span></h2>
+        <section class="experience mb-5 pb-4">
+            <h2 class="mb-4 d-flex align-items-center gap-3 text-dark"><i class="fas fa-briefcase text-primary fs-4"></i> <span data-i18n="experience_title">Work Experience</span></h2>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 project-card overflow-hidden">
-                        <a href="https://www.gong.it/" target="_blank" rel="noopener" class="text-decoration-none text-dark d-flex flex-column h-100">
-                            <div class="card-img-top bg-primary d-flex align-items-center justify-content-center overflow-hidden" style="height: 220px;">
-                                <img src="./assets/images/gong_logo.png" alt="Gong TECNOLOGY S.R.L." class="img-fluid object-fit-contain project-img" style="width: 35%;">
-                            </div>
-                            <div class="card-body p-4">
-                                <h3 class="card-title h5 fw-bold text-dark mb-2">Gong TECNOLOGY S.R.L.</h3>
-                                <div class="mb-3">
-                                    <span class="badge bg-primary-subtle text-primary fw-semibold px-2 py-1" data-i18n="gong_role">Back-end Developer | Sep 2022 - Aug 2025</span>
-                                </div>
-                                <p class="card-text text-muted-custom" data-i18n="gong_desc">Development of a management system for liquid feed administration in livestock farms (Django/Python). MySQL DB design, unit testing, CI/CD with GitHub Actions and technical documentation writing.</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
                 <div class="col-md-4">
                     <div class="card h-100 project-card overflow-hidden">
                         <a href="https://www.pmf.polimi.it/" target="_blank" rel="noopener" class="text-decoration-none text-dark d-flex flex-column h-100">
@@ -141,6 +174,22 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card h-100 project-card overflow-hidden">
+                        <a href="https://www.gong.it/" target="_blank" rel="noopener" class="text-decoration-none text-dark d-flex flex-column h-100">
+                            <div class="card-img-top bg-primary d-flex align-items-center justify-content-center overflow-hidden" style="height: 220px;">
+                                <img src="./assets/images/gong_logo.png" alt="Gong TECNOLOGY S.R.L." class="img-fluid object-fit-contain project-img" style="width: 35%;">
+                            </div>
+                            <div class="card-body p-4">
+                                <h3 class="card-title h5 fw-bold text-dark mb-2">Gong TECNOLOGY S.R.L.</h3>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary-subtle text-primary fw-semibold px-2 py-1" data-i18n="gong_role">Back-end Developer | Sep 2022 - Aug 2025</span>
+                                </div>
+                                <p class="card-text text-muted-custom" data-i18n="gong_desc">Development of a management system for liquid feed administration in livestock farms (Django/Python). MySQL DB design, unit testing, CI/CD with GitHub Actions and technical documentation writing.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 project-card overflow-hidden">
                         <a href="https://www.kiwi.it/" target="_blank" rel="noopener" class="text-decoration-none text-dark d-flex flex-column h-100">
                             <div class="card-img-top bg-primary d-flex align-items-center justify-content-center overflow-hidden" style="height: 220px;">
                                 <img src="./assets/images/kiwi_logo.png" alt="Kiwi S.R.L." class="img-fluid object-fit-contain project-img" style="width: 35%;">
@@ -151,6 +200,29 @@
                                     <span class="badge bg-primary-subtle text-primary fw-semibold px-2 py-1" data-i18n="kiwi_role">Web Developer | Jun 2018 - Aug 2018</span>
                                 </div>
                                 <p class="card-text text-muted-custom" data-i18n="kiwi_desc">Internship experience in front-end and back-end web development. Active participation in the development of an online management system.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects mb-5 pb-4">
+            <h2 class="mb-4 d-flex align-items-center gap-3 text-dark"><i class="fas fa-folder-open text-primary fs-4"></i> <span data-i18n="projects_title">Projects</span></h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 project-card overflow-hidden">
+                        <a href="https://www.qt.io/blog/face-and-voice-recognition-on-mcus-students-take-on-the-edge-ai-coffee-machine-challenge" target="_blank" rel="noopener" class="text-decoration-none text-dark d-flex flex-column h-100">
+                            <div class="card-img-top bg-success d-flex align-items-center justify-content-center overflow-hidden gap-4" style="height: 220px;">
+                                <i class="fas fa-microchip text-white" style="font-size: 4rem;"></i>
+                                <i class="fas fa-mug-hot text-white" style="font-size: 4rem;"></i>
+                            </div>
+                            <div class="card-body p-4">
+                                <h3 class="card-title h5 fw-bold text-dark mb-2">Qt Edge AI Coffee Machine</h3>
+                                <div class="mb-3">
+                                    <span class="badge bg-success-subtle text-success fw-semibold px-2 py-1" data-i18n="qt_role">Developer</span>
+                                </div>
+                                <p class="card-text text-muted-custom" data-i18n="qt_desc">Mentioned in the Qt Group blog for the "Edge AI Coffee Machine", showcasing face and voice recognition on MCUs.</p>
                             </div>
                         </a>
                     </div>
@@ -212,6 +284,36 @@
             <p class="mb-0">&copy; 2026 Emiliano Finetti | <span data-i18n="footer_text">Created with passion</span></p>
         </div>
     </footer>
+    
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="position-fixed bottom-0 start-0 w-100 bg-dark text-white p-3 text-center d-none" style="z-index: 1050; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);">
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
+            <span class="fs-6">
+                <i class="fas fa-cookie-bite me-2 text-primary"></i>
+                <span data-i18n="cookie_banner_text">This website uses only technical cookies to ensure a better browsing experience.</span>
+                <a href="cookie-policy.html" class="text-primary text-decoration-none ms-1" data-i18n="cookie_banner_link">Cookie Policy</a>.
+            </span>
+            <button id="acceptCookies" class="btn btn-primary btn-sm rounded-pill px-4 fw-medium" data-i18n="cookie_banner_btn">Got it!</button>
+        </div>
+    </div>
+
+    <!-- Cookie Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cookieBanner = document.getElementById('cookieBanner');
+            const acceptBtn = document.getElementById('acceptCookies');
+            
+            if (!localStorage.getItem('cookiesAccepted')) {
+                // Remove d-none to show the banner
+                cookieBanner.classList.remove('d-none');
+            }
+            
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieBanner.classList.add('d-none');
+            });
+        });
+    </script>
     
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
