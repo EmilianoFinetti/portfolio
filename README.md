@@ -18,22 +18,27 @@ The website is a static single-page application built to showcase my academic ba
 
 - **Fully Responsive Design:** Optimized for both mobile and desktop viewports utilizing the Bootstrap grid system.
 - **Dark Theme:** Modern aesthetic powered by Bootstrap's native dark mode.
-- **Internationalization (i18n):** The website content is provided in English by default. A custom JavaScript implementation automatically detects the browser's language and dynamically switches the content to Italian if `it` is detected.
+- **Internationalization (i18n):** The website content is provided in English by default. A custom JavaScript implementation automatically detects the browser's language and dynamically switches the text to Italian if preferred, falling back to English for all other locales.
 - **Interactive UI:** Smooth hover animations on project cards, skill lists, and education blocks.
 
 ## 📁 Directory Structure
 
 ```text
 .
-├── assets/
-│   ├── css/
-│   │   └── style.css       # Custom CSS and animation overrides
-│   ├── files/
-│   │   └── CV...pdf        # Downloadable Resume
-│   ├── images/             # Profile pictures and project logos
-│   └── js/
-│       └── i18n.js         # Browser language detection and translation script
-├── index.html              # Main webpage
+├── conf/                   # Nginx configuration
+│   └── default.conf
+├── public/                 # Static website files
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── style.css   # Custom CSS and animation overrides
+│   │   ├── files/
+│   │   │   └── CV...pdf    # Downloadable Resume
+│   │   ├── images/         # Profile pictures and project logos
+│   │   └── js/
+│   │       └── i18n.js     # Browser language detection and translation script
+│   └── index.html          # Main webpage
+├── docker-compose.yml      # Docker Compose configuration
+├── Dockerfile              # Docker image build instructions
 └── README.md               # Project documentation
 ```
 
