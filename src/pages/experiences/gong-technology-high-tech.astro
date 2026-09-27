@@ -1,0 +1,67 @@
+---
+import ExperienceLayout from '../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { Image } from 'astro:assets';
+
+// Import Logo
+import gongLogo from '../../assets/images/gong_tecnology_logo.png';
+
+// Import Projects Screenshot
+import feed02 from '../../assets/images/gong/feeding-new-02.jpg';
+import feed03 from '../../assets/images/gong/feeding-new-03.jpg';
+import feed04 from '../../assets/images/gong/feeding-new-04.jpg';
+import feed05 from '../../assets/images/gong/feeding-new-05.jpg';
+import feed06 from '../../assets/images/gong/feeding-new-06.jpg';
+import feed07 from '../../assets/images/gong/feeding-new-07.jpg';
+---
+
+<ExperienceLayout
+    pageLang="it"
+    pageTitle="Gong TECNOLOGY S.r.l. | Gong High-Tech S.r.l. | Emiliano Finetti"
+    pageDescription="Sviluppo back-end con Django, Python e MySQL per il settore zootecnico."
+    experienceUrl="/#experiences"
+    backToExperienceText="Torna alle esperienze"
+    companyName="Gong TECNOLOGY S.r.l. | Gong High-Tech S.r.l."
+    visitCompanyText="Visita il sito"
+    role="Sviluppatore Back-end"
+    duration="Set 2022 - Ago 2025"
+    companyUrl="https://www.gong.it/"
+    projectsSectionTitle="Progetti"
+>
+    <!-- 1. Pass the Logo -->
+    <Image slot="logo" src={gongLogo} alt="Gong Logo" class="img-fluid" />
+
+    <!-- 2. Pass the Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            Durante questa esperienza ho contribuito allo sviluppo, dal design del database al deployment, di soluzioni software per l'ottimizzazione e il controllo degli allevamenti zootecnici, introducendo pipeline di CI/CD e pratiche di testing automatizzato.
+        </p>
+    </div>
+
+    <!-- 3. Pass the Projects -->
+    <div slot="projects">
+        
+        <ProjectCard 
+            title="Sistema Gestionale per Allevamenti" 
+            technologies={['Python', 'Django', 'MySQL', 'GitHub Actions', 'Unit testing']}
+            reverse={false}
+        >
+            <p slot="description">
+                Progettazione e sviluppo di un'applicazione web per l'amministrazione e il controllo della somministrazione di mangime liquido negli allevamenti. Il sistema consente agli operatori di configurare le ricette, gestire i silos e i box, pianificare le attività quotidiane dal calendario e tracciare le curve di accrescimento.
+                <br><br>
+                Il mio lavoro si è concentrato sull'implementazione delle logiche di business in <strong>Python/Django</strong>, la strutturazione del database <strong>MySQL</strong>, la stesura dei test automatizzati e la configurazione delle pipeline di CI/CD tramite <strong>GitHub Actions</strong>, occupandomi infine della redazione della documentazione tecnica.
+            </p>
+            
+            <!-- Carousel with all the project screenshots -->
+            <Fragment slot="images">
+                <Image src={feed02} alt="Configurazione Ricetta" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed03} alt="Calendario Interventi" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed04} alt="Strutture e Box" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed05} alt="Gestione Silos" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed06} alt="Storico Movimenti" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed07} alt="Curva Accrescimento" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+            </Fragment>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>

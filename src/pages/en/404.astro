@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+    lang="en"
+    title="404 - Page Not Found | Emiliano Finetti"
+    description="The page you are looking for is not available."
+    footerText="Created with ❤"
+    cookieBannerText="This site only uses technical cookies to ensure a better browsing experience."
+    cookieBannerLink="Cookie Policy"
+    cookieBannerBtn="Got it!"
+>
+    <!-- Header specific to the 404 page -->
+    <header class="py-4 border-bottom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h4 mb-0 fw-bold text-dark">Emiliano Finetti</h1>
+        </div>
+    </header>
+
+    <!-- Main content for the 404 page -->
+    <main class="container flex-grow-1 d-flex align-items-center justify-content-center py-5 my-5">
+        <div class="text-center">
+            <h1 class="display-1 fw-bold text-primary mb-3">404</h1>
+            <h2 class="h3 fw-bold text-dark mb-3">Oops! Page not found.</h2>
+            <p class="fs-5 text-muted-custom mb-5" style="max-width: 600px; margin: 0 auto;">
+                The page you are looking for might have been removed, changed its name, or is temporarily unavailable.
+            </p>
+            <!-- Link to the root (Home in English) -->
+            <a href="/en/" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
+                <i class="fas fa-home me-2"></i> Go to Home
+            </a>
+        </div>
+    </main>
+</BaseLayout>

@@ -1,0 +1,67 @@
+---
+import ExperienceLayout from '../../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { Image } from 'astro:assets';
+
+// Import Logo
+import gongLogo from '../../../assets/images/gong_tecnology_logo.png';
+
+// Import Projects Screenshot
+import feed02 from '../../../assets/images/gong/feeding-new-02.jpg';
+import feed03 from '../../../assets/images/gong/feeding-new-03.jpg';
+import feed04 from '../../../assets/images/gong/feeding-new-04.jpg';
+import feed05 from '../../../assets/images/gong/feeding-new-05.jpg';
+import feed06 from '../../../assets/images/gong/feeding-new-06.jpg';
+import feed07 from '../../../assets/images/gong/feeding-new-07.jpg';
+---
+
+<ExperienceLayout
+    pageLang="en"     
+    pageTitle="Gong TECNOLOGY S.r.l. | Gong High-Tech S.r.l. | Emiliano Finetti"
+    pageDescription="Back-end development with Django, Python and MySQL for the livestock sector."
+    experienceUrl="/en/#experiences"
+    backToExperienceText="Back to experiences"
+    companyName="Gong TECNOLOGY S.r.l. | Gong High-Tech S.r.l."
+    visitCompanyText="Visit the website"
+    role="Back-end Developer"
+    duration="Sep 2022 - Aug 2025"
+    companyUrl="https://www.gong.it/"
+    projectsSectionTitle="Projects"
+>
+    <!-- 1. Pass the Logo -->
+    <Image slot="logo" src={gongLogo} alt="Gong Logo" class="img-fluid" />
+
+    <!-- 2. Pass the Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            During this experience, I contributed to the development, from database design to deployment, of software solutions for the optimization and control of livestock farms, introducing CI/CD pipelines and automated testing practices.
+        </p>
+    </div>
+
+    <!-- 3. Pass the Projects -->
+    <div slot="projects">
+        
+        <ProjectCard 
+            title="Livestock Management System" 
+            technologies={['Python', 'Django', 'MySQL', 'GitHub Actions', 'Unit testing']}
+            reverse={false}
+        >
+            <p slot="description">
+                Design and development of a web application for the administration and control of liquid feed distribution in livestock farms. The system allows operators to configure recipes, manage silos and boxes, plan daily activities from the calendar, and track growth curves.
+                <br><br>
+                My work focused on implementing the business logic in <strong>Python/Django</strong>, structuring the <strong>MySQL</strong> database, writing automated tests, and configuring CI/CD pipelines via <strong>GitHub Actions</strong>, while also handling the technical documentation.
+            </p>
+            
+            <!-- Carousel with all the project screenshots -->
+            <Fragment slot="images">
+                <Image src={feed02} alt="Recipe Configuration" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed03} alt="Calendar of Interventions" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed04} alt="Structures and Boxes" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed05} alt="Silos Management" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed06} alt="Historical Movements" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={feed07} alt="Growth Curve" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+            </Fragment>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>

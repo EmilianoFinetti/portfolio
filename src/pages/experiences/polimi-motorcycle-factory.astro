@@ -1,0 +1,62 @@
+---
+import ExperienceLayout from '../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { Image } from 'astro:assets';
+
+// Impport Logo
+import pmfLogo from '../../assets/images/PMF_logo.png';
+---
+
+<ExperienceLayout 
+    pageLang="it"
+    pageTitle="PoliMi Motorcycle Factory | Emiliano Finetti"
+    pageDescription="Emiliano Finetti presso PoliMi Motorcycle Factory: infrastruttura IT e analisi dei dati di telemetria per i prototipi di moto."
+    experienceUrl="/#experiences"
+    backToExperienceText="Torna alle esperienze"
+    companyName="PoliMi Motorcycle Factory"
+    visitCompanyText="Visita il sito"
+    role="IT & Data Analysis"
+    duration="Nov 2025 - Presente"
+    companyUrl="https://www.pmf.polimi.it/"
+    projectsSectionTitle="Progetti"
+>
+    <!-- Logo -->
+    <Image slot="logo" src={pmfLogo} alt="PoliMi Motorcycle Factory" class="img-fluid" />
+
+    <!-- Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            Lavoro tecnico all'interno del team universitario studentesco focalizzato sullo sviluppo e la validazione di prototipi di motociclette da competizione. Il mio ruolo si concentra sullo sviluppo di software desktop ad alte prestazioni per la telemetria e la gestione dell'infrastruttura IT di supporto.
+        </p>
+    </div>
+
+    <!-- Projects -->
+    <div slot="projects">
+        
+        <!-- Project 1: Pressure Measurement Framework -->
+        <ProjectCard 
+            title="Software Acquisizione Scanner Pressioni" 
+            technologies={['C++', 'Qt 6', 'Data Visualization', 'Sensors Integration']}
+            hasImages={false}
+        >
+            <p slot="description">
+                Sviluppo di un applicativo desktop per l'interfacciamento con uno o più scanner di pressioni a 16 canali, utilizzato per lo studio fluidodinamico e aerodinamico del veicolo.<br><br>
+                Il software è responsabile dell'acquisizione continua del flusso di dati hardware e del <strong>plotting live delle misurazioni</strong>. Grazie all'interfaccia realizzata in Qt 6, i valori di pressione vengono renderizzati graficamente in modo fluido, consentendo al team di analizzare le variazioni di pressione aerodinamica in tempo reale durante i test in galleria del vento o su pista.
+                Inoltre, il software gestisce la memorizzazione dei dati acquisiti in file CSV per successive analisi e reportistica.
+            </p>
+        </ProjectCard>
+
+        <!-- Project 2: Telemetry -->
+        <ProjectCard 
+            title="Piattaforma di Telemetria Live" 
+            technologies={['C++', 'Qt 6', 'Telemetria', 'Data Analysis']}
+            hasImages={false}
+        >
+            <p slot="description">
+                Progettazione e sviluppo di un software di telemetria dedicato alla lettura, elaborazione e visualizzazione dei dati provenienti dalla sensoristica montata sui prototipi.<br><br>
+                L'obiettivo primario del progetto è la realizzazione di un'architettura software a bassa latenza che consenta la <strong>visualizzazione della telemetria anche in tempo reale</strong>. Questo strumento è fondamentale per permettere agli ingegneri di pista di monitorare le prestazioni dinamiche della moto istante per istante durante i test, supportando decisioni di setup critiche e immediate.
+            </p>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>

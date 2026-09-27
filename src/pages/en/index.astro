@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+
+// Import of images for the homepage
+import profileImg from '../../assets/images/EmilianoFinetti.jpg';
+import pmfLogo from '../../assets/images/PMF_logo.png';
+import gongLogo from '../../assets/images/gong_tecnology_logo.png';
+import kiwiLogo from '../../assets/images/kiwi_logo.png';
+import polimiLogo from '../../assets/images/polimi_logo.png';
+import unitnLogo from '../../assets/images/unitn_logo.svg';
+import fermiLogo from '../../assets/images/enrico_fermi_logo.png';
+---
+
+<BaseLayout 
+    lang="en"
+    title="Emiliano Finetti | Computer Engineer & Back-end Developer"
+    description="Aspiring Computer Engineer at Politecnico di Milano & Back-end Developer. Passionate about complex systems, Python, Django, and C++."
+    footerText="Created with ❤"
+    cookieBannerText="This site only uses technical cookies to provide a better browsing experience."
+    cookieBannerLink="Cookie Policy"
+    cookieBannerBtn="Got it!"
+>
+    <header class="hero py-5 mb-5">
+        <div class="container py-4">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-5 text-center text-lg-end pe-lg-5">
+                    <Image src={profileImg} alt="Emiliano Finetti" class="img-fluid rounded-circle profile-img" style="width: 240px; height: 240px; object-fit: cover; object-position: center top; border: 4px solid #fff;" />
+                </div>
+                <div class="col-lg-7 text-center text-lg-start">
+                    <h1 class="display-4 fw-bold mb-3 text-dark">Emiliano Finetti</h1>
+                    <p class="lead text-muted-custom mb-4 fs-4" style="max-width: 800px; font-weight: 300;">Aspiring Computer Engineer at <strong class="text-dark fw-semibold">Politecnico di Milano</strong>. Back-end Developer with experience in Python, Django and C++. Passionate about complex systems and technological innovation.</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
+                        <a href="mailto:emilianofinetti@gmail.com" class="btn btn-primary rounded-pill px-4 py-2 fw-medium"><i class="fas fa-envelope me-2"></i> Email</a>
+                        <a href="https://www.linkedin.com/in/emiliano-finetti/" target="_blank" rel="noopener" class="btn btn-outline-theme rounded-pill px-4 py-2 fw-medium"><i class="fab fa-linkedin me-2"></i> LinkedIn</a>
+                        <a href="https://github.com/EmilianoFinetti" target="_blank" rel="noopener" class="btn btn-outline-theme rounded-pill px-4 py-2 fw-medium"><i class="fab fa-github me-2"></i> GitHub</a>
+                        <a href="/assets/files/CV - Emiliano Finetti.pdf" target="_blank" rel="noopener" download class="btn btn-outline-primary rounded-pill px-4 py-2 fw-medium"><i class="fas fa-download me-2"></i> Download CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mb-5" style="max-width: 1920px">
+        <!-- ABOUT ME SECTION-->
+        <section class="about mb-5 pb-2">
+            <h2 class="mb-4 d-flex align-items-center gap-3 text-dark"><i class="fas fa-user text-primary fs-4"></i> About Me</h2>
+            <p class="fs-5 text-muted-custom" style="line-height: 1.7;">I am an aspiring Computer Engineer, currently a student in the Master's program in Computer Science and Engineering at Politecnico di Milano, after completing my Bachelor's degree at the University of Trento. With solid foundations in backend development, I focus on creating robust architectures, optimizing databases, and integrating hardware and software. In my professional experiences, particularly at Gong TECNOLOGY S.r.l. (now Gong High-Tech S.r.l.), I have developed complex management systems using Python and Django. I am a curious person, always eager to learn new technologies and adaptable to change. As a team member, I value different perspectives and use data analysis to make informed and effective decisions.</p>
+        </section>
+
+        <!-- EXPERIENCES SECTION -->
+        <section class="experience mb-5 pb-4" id="experiences">
+            <h2 class="mb-4 d-flex align-items-center gap-3 text-dark"><i class="fas fa-briefcase text-primary fs-4"></i> Professional Experiences</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a href="/en/experiences/polimi-motorcycle-factory" class="card h-100 project-card experience-card-link overflow-hidden">
+                        <div class="text-dark d-flex flex-column h-100">
+                            <div class="card-img-top bg-primary d-flex align-items-center justify-content-center overflow-hidden" style="height: 220px;">
+                                <Image src={pmfLogo} alt="PoliMi Motorcycle Factory" class="img-fluid object-fit-contain project-img" style="width: 35%;" />
+                            </div>
+                            <div class="card-body p-4">
+                                <h3 class="card-title h5 fw-bold text-dark mb-2">PoliMi Motorcycle Factory</h3>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary-subtle text-primary fw-semibold px-2 py-1 text-wrap">IT & Data Analysis | Nov 2025 - Present</span>
+                                </div>
+                                <p class="card-text text-muted-custom">Development of the IT infrastructure and advanced data analysis of telemetry data for motorcycle prototypes. Processing and visualization of data to support engineering decisions and optimize performance on the track.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-4">
+                    <a href="/en/experiences/gong-technology-high-tech" class="card h-100 project-card experience-card-link overflow-hidden">
+                        <div class="text-dark d-flex flex-column h-100">
+                            <div class="card-img-top bg-primary d-flex align-items-center justify-content-center overflow-hidden" style="height: 220px;">
+                                <Image src={gongLogo} alt="Gong TECNOLOGY S.r.l. | GONG High-Tech S.r.l." class="img-fluid object-fit-contain project-img" style="width: 35%;" />
+                            </div>
+                            <div class="card-body p-4">
+                                <h3 class="card-title h5 fw-bold text-dark mb-2">Gong TECNOLOGY S.r.l. | GONG High-Tech S.r.l.</h3>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary-subtle text-primary fw-semibold px-2 py-1 text-wrap">Back-end Developer | Sep 2022 - Aug 2025</span>
+                                </div>
+                                <p class="card-text text-muted-custom">Development of a management system for the administration of liquid feed in livestock (Django/Python). Database design, unit testing, CI/CD with GitHub Actions and technical documentation.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4">
+                    <a href="/en/experiences/kiwi" class="card h-100 project-card experience-card-link overflow-hidden">
+                        <div class="text-dark d-flex flex-column h-100">
+                            <div class="card-img-top bg-primary d-flex align-items-center justify-content-center overflow-hidden" style="height: 220px;">
+                                <Image src={kiwiLogo} alt="Kiwi S.R.L." class="img-fluid object-fit-contain project-img" style="width: 72%;" />
+                            </div>
+                            <div class="card-body p-4">
+                                <h3 class="card-title h5 fw-bold text-dark mb-2">Kiwi S.R.L.</h3>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary-subtle text-primary fw-semibold px-2 py-1 text-wrap">Web Developer | Jun 2018 - Aug 2018</span>
+                                </div>
+                                <p class="card-text text-muted-custom">Internship experience in the development of front-end and back-end websites. Active participation in the development of an online management system.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section class="projects mb-5 pb-4" id="projects">
+            <h2 class="mb-4 d-flex align-items-center gap-3 text-dark"><i class="fas fa-folder-open text-primary fs-4"></i> <span data-i18n="projects_title">Projects</span></h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card h-100 project-card overflow-hidden">
+                        <div class="text-dark d-flex flex-column h-100">
+                            <div class="card-img-top bg-success d-flex align-items-center justify-content-center overflow-hidden gap-4" style="height: 220px;">
+                                <i class="fas fa-microchip text-white" style="font-size: 4rem;"></i>
+                                <i class="fas fa-mug-hot text-white" style="font-size: 4rem;"></i>
+                            </div>
+                            <div class="card-body p-4">
+                                <h3 class="card-title h5 fw-bold text-dark mb-2"><a href="/en/projects/qt-coffee-machine" class="text-dark stretched-link">Qt Edge AI Coffee Machine</a></h3>
+                                <div class="mb-3">
+                                    <span class="badge bg-success-subtle text-success fw-semibold px-2 py-1 text-wrap" data-i18n="qt_role">Developer | Oct 2025 - Jan 2026</span>
+                                </div>
+                                <p class="card-text text-muted-custom" data-i18n="qt_desc">Mentioned in the Qt group blog for the "Edge AI Coffee Machine", showcasing a facial and voice recognition system on an MCU.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card h-100 project-card overflow-hidden">
+                        <div class="text-dark d-flex flex-column h-100">
+                            <div class="card-img-top d-flex align-items-center justify-content-center overflow-hidden gap-4" style="height: 220px; background-color: #26b6c3;">
+                                <i class="fas fa-gamepad text-white" style="font-size: 5rem;"></i>
+                            </div>
+                            <div class="card-body p-4">
+                                <h3 class="card-title h5 fw-bold text-dark mb-2">
+                                    <a href="/projects/melted-hero" class="text-dark stretched-link">Melted Hero</a>
+                                </h3>
+                                <div class="mb-3">
+                                    <span class="badge custom-badge-melted fw-semibold px-2 py-1 text-wrap">Game Developer | Oct 2025 - Feb 2026</span>
+                                </div>
+                                <p class="card-text text-muted-custom">Development of a video game developed in team within the Videogame Design and Programming course at Politecnico di Milano.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section class="skills mb-5 pb-4">
+            <h2 class="mb-4 d-flex align-items-center gap-3 text-dark"><i class="fas fa-code text-primary fs-4"></i> <span data-i18n="skills_title">Skills</span></h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card h-100 hover-card">
+                        <div class="card-body p-4">
+                            <h3 class="card-title h5 text-dark fw-bold mb-4"><i class="fas fa-server me-2 text-primary"></i> <span data-i18n="skills_backend">Back-end & Languages</span></h3>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-python me-2 text-primary"></i> Python / Django</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-code me-2 text-primary"></i> C / C++</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-java me-2 text-primary"></i> Java / Kotlin</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-node-js me-2 text-primary"></i> Node.js</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-database me-2 text-primary"></i> MySQL</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card h-100 hover-card">
+                        <div class="card-body p-4">
+                            <h3 class="card-title h5 text-dark fw-bold mb-4"><i class="fas fa-laptop-code me-2 text-primary"></i> <span data-i18n="skills_frontend">Front-end & Technologies</span></h3>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-html5 me-2 text-primary"></i> HTML / CSS / JS</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-bootstrap me-2 text-primary"></i> Bootstrap</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-window-restore me-2 text-primary"></i> Qt Framework</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-git-alt me-2 text-primary"></i> Git / GitHub Actions</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-docker me-2 text-primary"></i> Docker</li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fab fa-linux me-2 text-primary"></i> Linux</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card h-100 hover-card">
+                        <div class="card-body p-4">
+                            <h3 class="card-title h5 text-dark fw-bold mb-4"><i class="fas fa-lightbulb me-2 text-primary"></i> <span data-i18n="skills_soft">Soft Skills</span></h3>
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-search me-2 text-primary"></i> <span data-i18n="skill_problem">Problem Solving</span></li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-users me-2 text-primary"></i> <span data-i18n="skill_team">Teamwork</span></li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-sync-alt me-2 text-primary"></i> <span data-i18n="skill_flex">Flexibility</span></li>
+                                <li class="skill-item p-3 rounded fw-medium text-dark"><i class="fas fa-chart-line me-2 text-primary"></i> <span data-i18n="skill_data">Data Analysis</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section class="education mb-5">
+            <h2 class="mb-4 d-flex align-items-center gap-3 text-dark"><i class="fas fa-user-graduate text-primary fs-4"></i>Education</h2>
+            <div class="d-flex flex-column gap-3">
+                <a href="https://www.polimi.it/" target="_blank" rel="noopener" class="text-decoration-none">
+                    <div class="card education-card">
+                        <div class="card-body d-flex flex-column flex-md-row align-items-center gap-4 p-4">
+                            <div class="bg-white rounded shadow-sm d-flex align-items-center justify-content-center p-2" style="width: 120px; height: 120px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.05);">
+                                <Image src={polimiLogo} alt="Politecnico di Milano" class="img-fluid" style="max-height: 100%;" />
+                            </div>
+                            <div class="text-center text-md-start">
+                                <h3 class="h5 fw-bold text-dark mb-1">Politecnico di Milano</h3>
+                                <p class="text-primary fw-semibold mb-1">Master's Degree in Computer Science and Engineering</p>
+                                <p class="text-muted-custom mb-0 small">2024 - In progress</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.unitn.it/it" target="_blank" rel="noopener" class="text-decoration-none">
+                    <div class="card education-card">
+                        <div class="card-body d-flex flex-column flex-md-row align-items-center gap-4 p-4">
+                            <div class="bg-white rounded shadow-sm d-flex align-items-center justify-content-center p-2" style="width: 120px; height: 120px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.05);">
+                                <Image src={unitnLogo} alt="Università di Trento" class="img-fluid" style="max-height: 100%;" />
+                            </div>
+                            <div class="text-center text-md-start">
+                                <h3 class="h5 fw-bold text-dark mb-1">Università di Trento</h3>
+                                <p class="text-primary fw-semibold mb-1">Bachelor's Degree in Computer Engineering, Electronics and Communications</p>
+                                <p class="text-muted-custom mb-0 small">2019 - 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://www.fermimn.edu.it/" target="_blank" rel="noopener" class="text-decoration-none">
+                    <div class="card education-card">
+                        <div class="card-body d-flex flex-column flex-md-row align-items-center gap-4 p-4">
+                            <div class="bg-white rounded shadow-sm d-flex align-items-center justify-content-center p-2" style="width: 120px; height: 120px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.05);">
+                                <Image src={fermiLogo} alt="Istituto Superiore Enrico Fermi" class="img-fluid" style="max-height: 100%;" />
+                            </div>
+                            <div class="text-center text-md-start">
+                                <h3 class="h5 fw-bold text-dark mb-1">Istituto Superiore Enrico Fermi, Mantova</h3>
+                                <p class="text-primary fw-semibold mb-1">High School Diploma in Scientific High School - Applied Sciences</p>
+                                <p class="text-muted-custom mb-0 small">2014 - 2019</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+</BaseLayout>

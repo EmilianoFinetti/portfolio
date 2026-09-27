@@ -38,15 +38,13 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Let the layout use the full viewport while preserving readable side gutters. */
 .container {
     width: 100%;
-    max-width: none !important;
+    max-width: none;
     padding-right: clamp(1rem, 3vw, 4rem);
     padding-left: clamp(1rem, 3vw, 4rem);
 }
 
-/* Typography & Links */
 h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color) !important;
     font-weight: 700;
@@ -100,6 +98,11 @@ a:hover {
 .project-card:hover .project-img {
     transform: scale(1.05);
 }
+
+.custom-badge-melted {
+        background-color: rgba(38, 182, 195, 0.15) !important;
+        color: #1a8b96 !important;
+    }
 
 .experience-card-link {
     color: inherit;
@@ -306,36 +309,11 @@ a:hover {
     -webkit-line-clamp: 3;
 }
 
-@media (max-width: 767.98px) {
-    .experience-hero {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .experience-logo {
-        width: 140px;
-        height: 140px;
-    }
-
-    .gallery-heading {
-        display: block;
-    }
-
-    .gallery-thumbnails {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
 .text-dark {
     color: var(--heading-color) !important;
 }
 .bg-primary-subtle {
     background-color: rgba(13, 110, 253, 0.15) !important;
-}
-
-footer {
-    background-color: var(--footer-bg) !important;
-    border-top-color: var(--card-border) !important;
 }
 
 /* Custom Outlined Button for Dark Mode Adaptability */
@@ -351,6 +329,7 @@ footer {
 footer {
     background-color: var(--footer-bg) !important;
     border-top-color: var(--card-border) !important;
+    margin-bottom: 0;
 }
 
 .experience-logo--kiwi img {
@@ -371,11 +350,19 @@ footer {
     font-weight: 600;
 }
 
+[data-bs-theme="light"] .btn-primary {
+    color: #0a58ca;
+}
+
 .btn-primary:hover {
     background-color: #0a58ca;
     border-color: #0a58ca;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+[data-bs-theme="light"] .btn-primary:hover {
+    color: white;
 }
 
 .btn-outline-primary {
@@ -388,6 +375,10 @@ footer {
     background-color: var(--primary-color);
     color: white;
     transform: translateY(-2px);
+}
+
+[data-bs-theme="light"] .btn-outline-primary:hover {
+    color: #0d6efd; 
 }
 
 /* Enhanced Card Hover Effects */
@@ -480,3 +471,22 @@ footer {
     opacity: 0.9;
 }
 
+@media (max-width: 767.98px) {
+    .experience-hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .experience-logo {
+        width: 140px;
+        height: 140px;
+    }
+
+    .gallery-heading {
+        display: block;
+    }
+
+    .gallery-thumbnails {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

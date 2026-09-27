@@ -1,0 +1,68 @@
+---
+import ExperienceLayout from '../../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { Image } from 'astro:assets';
+
+import mh1 from '../../../assets/images/melted-hero/melted-hero-1.png';
+import mh2 from '../../../assets/images/melted-hero/melted-hero-2.png';
+import mh3 from '../../../assets/images/melted-hero/melted-hero-3.jpeg';
+import mh4 from '../../../assets/images/melted-hero/melted-hero-4.png';
+
+---
+
+<ExperienceLayout 
+    pageLang="en"
+    pageTitle="Melted Hero | Emiliano Finetti"
+    pageDescription="Development of the video game Melted Hero."
+    experienceUrl="/#projects"
+    backToExperienceText="Back to Projects"
+    companyName="Melted Hero"
+    visitCompanyText="Play on itch.io"
+    role="Game Developer"
+    duration="Oct 2025 - Feb 2026"
+    companyUrl="https://polimi-game-collective.itch.io/melted-hero"
+    projectsSectionTitle="Details"
+>
+    <!-- Logo -->
+    <div slot="logo" class="d-flex align-items-center justify-content-center w-100 h-100 text-white rounded" style="background-color: #26b6c3;">
+        <i class="fas fa-gamepad" style="font-size: 4rem;"></i>
+    </div>
+
+    <!-- Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            Video game developed in team within the <strong>Videogame Design and Programming</strong> course at Politecnico di Milano. <br><br>
+            Melted Hero is a high-speed platformer in which you play as an ice cube fighting against time, heat, and obstacles to reach the end of each level before melting. Each environment is full of traps and environmental obstacles that slowly increase your temperature, so every move counts!
+        </p>
+    </div>
+
+    <!-- Tecnical Details -->
+    <div slot="projects">
+        
+        <ProjectCard 
+            title="Development of Game Mechanics and Gameplay"
+            technologies={['Game Development', 'C#', 'Unity', 'Teamwork']}
+        >
+            <p slot="description">
+                Within the development team, I contributed to the realization of the project by addressing various architectural and gameplay challenges.<br><br>
+                My work was primarily focused on <strong>programming the physics of obstacles, managing the UI, and developing the level design</strong>. 
+                This experience allowed me to deepen my understanding of game loop mechanics and the application of best practices in a collaborative development environment.
+            </p>
+
+            <Fragment slot="images">
+                <Image src={mh2} alt="Tutorial" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={mh3} alt="Livello 1" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={mh1} alt="Livello 2" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+                <Image src={mh4} alt="Livello 3" class="rounded shadow-sm" style="flex: 0 0 100%; scroll-snap-align: center; object-fit: cover;"/>
+            </Fragment>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>
+
+<style>
+    :global(.experience-logo) {
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+</style>

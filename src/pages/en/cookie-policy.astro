@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+    lang="en"
+    title="Cookie Policy - Emiliano Finetti"
+    description="Information about the technical cookies used on the site."
+    footerText="Created with ❤"
+    cookieBannerText="This site only uses technical cookies to ensure a better browsing experience."
+    cookieBannerLink="Cookie Policy"
+    cookieBannerBtn="Got it!"
+>
+    <header class="py-4 border-bottom mb-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h4 mb-0 fw-bold text-dark">Emiliano Finetti</h1>
+            <a href="/" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-medium">
+                <i class="fas fa-arrow-left me-2"></i> Back to Home
+            </a>
+        </div>
+    </header>
+
+    <main class="container mb-5" style="max-width: 800px;">
+        <h2 class="mb-4 d-flex align-items-center gap-3 text-dark">
+            <i class="fas fa-cookie-bite text-primary fs-3"></i> 
+            <span>Cookie Policy</span>
+        </h2>
+        
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4 p-md-5">
+                <p class="fs-5 text-muted-custom mb-4" style="line-height: 1.7;">
+                    This website only uses technical cookies necessary for its proper functioning. No profiling cookies or third-party cookies are used to track user behavior.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">Technical Cookies</h3>
+                <p class="text-muted-custom mb-4" style="line-height: 1.6;">
+                    Technical cookies are necessary for the proper functioning of the site. For example, we use a cookie to remember your preference regarding the closure of the informational banner.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">How to disable cookies</h3>
+                <p class="text-muted-custom mb-0" style="line-height: 1.6;">
+                    You can disable cookies directly from your browser settings. Keep in mind that disabling technical cookies may affect some features of the website.
+                </p>
+            </div>
+        </div>
+    </main>
+</BaseLayout>

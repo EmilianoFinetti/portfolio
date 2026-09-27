@@ -1,0 +1,56 @@
+---
+import ExperienceLayout from '../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+---
+
+<ExperienceLayout 
+    pageLang="it"
+    pageTitle="Qt Edge AI Coffee Machine | Emiliano Finetti"
+    pageDescription="Progetto Edge AI Coffee Machine: implementazione di riconoscimento facciale e vocale su MCU utilizzando C++ e Qt."
+    experienceUrl="/#projects"
+    backToExperienceText="Torna ai progetti"
+    companyName="Qt Edge AI Coffee Machine"
+    visitCompanyText="Leggi il post sul blog"
+    role="Sviluppatore C++ / Qt"
+    duration="Ott 2025 - Gen 2026"
+    companyUrl="https://www.qt.io/blog/face-and-voice-recognition-on-mcus-students-take-on-the-edge-ai-coffee-machine-challenge"
+    projectsSectionTitle="Dettagli"
+>
+    <!-- Logo: using FontAwesome icons -->
+    <div slot="logo" class="d-flex align-items-center justify-content-center gap-3 w-100 h-100 text-white">
+        <i class="fas fa-microchip" style="font-size: 3.5rem;"></i>
+        <i class="fas fa-mug-hot" style="font-size: 3.5rem;"></i>
+    </div>
+
+    <!-- Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            Progetto realizzato per una challenge ingegneristica proposta da Qt Group. L'obiettivo è stato quello di sviluppare l'interfaccia e la logica di controllo per una macchina da caffè intelligente basata su microcontrollori (MCU), integrandovi funzionalità avanzate di riconoscimento facciale e vocale (Edge AI).
+        </p>
+    </div>
+
+    <!-- Tecnical Details -->
+    <div slot="projects">
+        
+        <ProjectCard 
+            title="Sviluppo Applicativo e Integrazione AI" 
+            projectGithubUrl="https://github.com/edge-coffee-machine/edge-coffee-machine"
+            technologies={['C++', 'Qt 6', 'Edge AI', 'Microcontrollori (MCU)', 'Computer Vision']}
+            hasImages={false}
+        >
+            <p slot="description">
+                Il progetto ha richiesto di combinare lo sviluppo di interfacce grafiche per dispositivi embedded con l'esecuzione di modelli di intelligenza artificiale leggeri direttamente sull'hardware del microcontrollore, senza dipendere da calcoli in cloud.<br><br>
+                Lo sviluppo in <strong>C++ e Qt 6</strong> ha previsto l'integrazione delle librerie necessarie per processare l'input della fotocamera e del microfono in tempo reale. Il sistema riconosce l'utente e i suoi comandi vocali per erogare la bevanda, ottimizzando l'utilizzo di RAM e CPU per rispettare i severi vincoli fisici del dispositivo.<br><br>
+                Il risultato di questo lavoro di squadra è stato così soddisfacente da meritare una menzione ufficiale sul blog globale di Qt.
+            </p>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>
+
+<style>
+    /* Override the default blue color of the ExperienceLayout to maintain the green (bg-success) original color of this project */
+    :global(.experience-logo) {
+        background-color: var(--bs-success) !important;
+    }
+</style>

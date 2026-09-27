@@ -1,0 +1,48 @@
+---
+import ExperienceLayout from '../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { Image } from 'astro:assets';
+
+// Import Logo
+import kiwiLogo from '../../assets/images/kiwi_logo.png';
+---
+
+<ExperienceLayout 
+    pageLang="it"
+    pageTitle="Kiwi S.R.L. | Emiliano Finetti"
+    pageDescription="Emiliano Finetti presso Kiwi S.R.L.: tirocinio nello sviluppo web front-end e back-end."
+    experienceUrl="/#experiences"
+    backToExperienceText="Torna alle esperienze"
+    companyName="Kiwi S.R.L."
+    visitCompanyText="Visita il sito"
+    role="Sviluppatore Web"
+    duration="Giu 2018 - Ago 2018"
+    companyUrl="https://www.kiwi.it/"
+    projectsSectionTitle="Progetti"
+>
+    <!-- Logo -->
+    <Image slot="logo" src={kiwiLogo} alt="Kiwi S.R.L." class="img-fluid" />
+
+    <!-- Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            Prima esperienza professionale nel mondo dello sviluppo web tramite un tirocinio formativo. Ho avuto l'opportunità di confrontarmi con le dinamiche di un ambiente lavorativo reale, contribuendo ad attività full-stack per le soluzioni software dell'azienda.
+        </p>
+    </div>
+
+    <!-- Projects -->
+    <div slot="projects">
+    
+        <ProjectCard 
+            title="Sviluppo Gestionale Online" 
+            technologies={['Sviluppo Web', 'Front-end', 'Back-end', 'Sistemi gestionali']}
+            hasImages={false}
+        >
+            <p slot="description">
+                Durante il periodo di tirocinio, ho partecipato attivamente allo sviluppo e alla manutenzione di un sistema gestionale online.<br><br>
+                Il mio contributo si è diviso tra lo sviluppo di interfacce <strong>front-end</strong> e l'implementazione di logiche <strong>back-end</strong>, permettendomi di comprendere l'architettura client-server in un contesto produttivo. Questa esperienza è stata fondamentale per consolidare le mie basi di programmazione e imparare a collaborare su una base di codice esistente all'interno di un team di sviluppo.
+            </p>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>

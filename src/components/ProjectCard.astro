@@ -1,0 +1,125 @@
+---
+const { 
+    title, 
+    projectGithubUrl,
+    hasImages = true,
+    technologies = [], 
+    reverse = false } = Astro.props;
+---
+
+<div class={`row gy-4 mb-5 pb-5 align-items-center project-row ${reverse ? 'flex-md-row-reverse' : ''}`}>
+    <!-- Column Text and Technologies -->
+    <div class={hasImages ? "col-md-5" : "col-md-12"}>
+        <h3 class="fw-bold text-dark mb-3">{title}</h3>
+        <div class="text-muted-custom mb-4" style="line-height: 1.7;">
+            <slot name="description" />
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+            {technologies.map((tech) => (
+                <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill fw-medium">{tech}</span>
+            ))}
+        </div>
+
+        <div class="mt-4">
+            {projectGithubUrl && (
+                <a href={projectGithubUrl} target="_blank" rel="noopener" class="btn btn-outline-secondary rounded-pill px-4 fw-medium">
+                    <i class="fab fa-github me-2"></i> View on GitHub
+                </a>
+            )}
+        </div>
+    </div>
+
+    <!-- Column Carousel Images -->
+    {hasImages && (
+        <div class="col-md-7">
+            <div class="vanilla-carousel-container position-relative">
+                <div class="vanilla-carousel">
+                    <slot name="images" />
+                </div>
+            
+                <!-- JS Controls (arrows) -->
+                <div class="carousel-controls mt-3 d-flex justify-content-end gap-2">
+                    <button class="carousel-btn prev-btn shadow-sm" aria-label="Precedente"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next-btn shadow-sm" aria-label="Successivo"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    )}
+</div>
+
+<style>
+    .vanilla-carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        gap: 1rem;
+        border-radius: 16px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .vanilla-carousel::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .vanilla-carousel :global(img) {
+        flex: 0 0 100%;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        scroll-snap-align: center;
+        border-radius: 0.5rem;
+    }
+
+    .carousel-btn {
+        background-color: var(--bs-body-bg);
+        color: var(--bs-primary);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .carousel-btn:hover {
+        background-color: var(--bs-primary);
+        color: #fff;
+    }
+
+    @media (min-width: 768px) {
+        .vanilla-carousel {
+            gap: 1.5rem;
+        }
+    }
+</style>
+
+<script>
+    // Initiliazes all the carousels on the page (even if there are 5 different ones)
+    document.addEventListener('DOMContentLoaded', () => {
+        const containers = document.querySelectorAll('.vanilla-carousel-container');
+        
+        containers.forEach(container => {
+            const carousel = container.querySelector('.vanilla-carousel');
+            const prevBtn = container.querySelector('.prev-btn');
+            const nextBtn = container.querySelector('.next-btn');
+
+            if (!carousel || !prevBtn || !nextBtn) return;
+
+            // Dinamically calculate how much to scroll (the width of an element)
+            const scrollAmount = () => carousel.clientWidth * 0.9; 
+
+            nextBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+            });
+        });
+    });
+</script>

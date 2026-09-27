@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+    lang="it"
+    title="Cookie Policy - Emiliano Finetti"
+    description="Informativa sui cookie tecnici utilizzati sul sito."
+    footerText="Creato con passione"
+    cookieBannerText="Questo sito utilizza solo cookie tecnici per garantire una migliore esperienza di navigazione."
+    cookieBannerLink="Cookie Policy"
+    cookieBannerBtn="Capito!"
+>
+    <header class="py-4 border-bottom mb-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h4 mb-0 fw-bold text-dark">Emiliano Finetti</h1>
+            <a href="/" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-medium">
+                <i class="fas fa-arrow-left me-2"></i> Torna alla Home
+            </a>
+        </div>
+    </header>
+
+    <main class="container mb-5" style="max-width: 800px;">
+        <h2 class="mb-4 d-flex align-items-center gap-3 text-dark">
+            <i class="fas fa-cookie-bite text-primary fs-3"></i> 
+            <span>Cookie Policy</span>
+        </h2>
+        
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4 p-md-5">
+                <p class="fs-5 text-muted-custom mb-4" style="line-height: 1.7;">
+                    Questo sito web utilizza esclusivamente cookie tecnici necessari per il suo corretto funzionamento. Non vengono utilizzati cookie di profilazione o di terze parti per tracciare il comportamento dell'utente.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">Cookie Tecnici</h3>
+                <p class="text-muted-custom mb-4" style="line-height: 1.6;">
+                    I cookie tecnici sono necessari per il funzionamento del sito. Ad esempio, utilizziamo un cookie per ricordare la tua preferenza riguardo la chiusura del banner informativo.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">Come disabilitare i cookie</h3>
+                <p class="text-muted-custom mb-0" style="line-height: 1.6;">
+                    Puoi disabilitare i cookie direttamente dalle impostazioni del tuo browser. Tieni presente che la disabilitazione dei cookie tecnici potrebbe influire su alcune funzionalità del sito web.
+                </p>
+            </div>
+        </div>
+    </main>
+</BaseLayout>

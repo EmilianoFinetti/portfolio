@@ -2,3 +2,6 @@
 .gitignore
 Dockerfile
 dockerfile
+node_modules
+dist
+.astro

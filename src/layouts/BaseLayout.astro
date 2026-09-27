@@ -1,0 +1,175 @@
+---
+// Astro component for the base layout of the website. It includes the HTML structure, head metadata, and footer. It also handles theme toggling and cookie banner functionality.
+
+// Importing the global CSS for the website
+import '../assets/css/style.css';
+
+// Destructuring the props passed to the BaseLayout component
+const { 
+    title, 
+    description, 
+    lang, 
+    footerText, 
+    cookieBannerText, 
+    cookieBannerLink, 
+    cookieBannerBtn 
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang={lang} data-bs-theme="auto" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description}>
+    <meta name="keywords" content="Emiliano Finetti, Computer Engineer, Back-end Developer, Python, Django, C++, Politecnico di Milano, Software Engineering">
+    <meta name="author" content="Emiliano Finetti">
+    <title>{title}</title>
+    
+    <link rel="canonical" href="https://www.emilianofinetti.com/">
+    
+    <!-- Open Graph & Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.emilianofinetti.com/">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content="https://www.emilianofinetti.com/assets/images/EmilianoFinetti.jpg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.emilianofinetti.com/">
+    <meta property="twitter:title" content={title}>
+    <meta property="twitter:description" content={description}>
+    <meta property="twitter:image" content="https://www.emilianofinetti.com/assets/images/EmilianoFinetti.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Bootstrap, FontAwesome & Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Language Router Script -->
+    <script is:inline>
+        // Retrieve the user's preferred language from localStorage or the browser's default language
+        const storedLang = localStorage.getItem('preferred-lang');
+        const browserLang = (navigator.language || navigator.userLanguage).toLowerCase();
+        const currentPath = window.location.pathname;
+        
+        // Determine if the user wants to see the Italian version (manual setting takes precedence over browser)
+        const wantsItalian = storedLang ? storedLang === 'it' : browserLang.startsWith('it');
+        
+        // Verify if the current URL is already in English (starts with /en/ or is exactly /en)
+        const isCurrentlyEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
+
+        if (!wantsItalian && !isCurrentlyEnglish) {
+            // The user wants English but is on an Italian page: add /en to the current URL
+            window.location.replace('/en' + currentPath);
+            
+        } else if (wantsItalian && isCurrentlyEnglish) {
+            // The user wants Italian but is on an English page: remove /en from the current URL
+            const newPath = currentPath.replace(/^\/en/, '') || '/';
+            window.location.replace(newPath);
+        }
+    </script>
+
+    <!-- Theme Toggler Script -->
+    <script is:inline>
+        // Function to update the theme icon based on the current theme
+        function updateIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            const btn = document.getElementById('theme-toggle');
+            
+            if (icon && btn) {
+                // Reset the button classes to ensure only the relevant class is applied
+                btn.classList.remove('btn-dark', 'btn-light');
+                
+                if (theme === 'dark') {
+                    icon.className = 'fas fa-sun'; // Show the sun icon
+                    btn.classList.add('btn-light'); // Light button for contrast against dark background
+                } else {
+                    icon.className = 'fas fa-moon'; // Show the moon icon
+                    btn.classList.add('btn-dark'); // Dark button for contrast against light background
+                }
+            }
+        }
+
+        function updateTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+            
+            document.documentElement.setAttribute('data-bs-theme', theme);
+            
+            // Update the icon if the DOM is already loaded
+            if(document.readyState !== 'loading') updateIcon(theme);
+        }
+
+        updateTheme();
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        }
+
+        window.updateTheme = updateTheme;
+        window.toggleTheme = toggleTheme;
+
+        // Ensure the icon is updated when the DOM is fully loaded and when the system theme preference changes
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            updateIcon(currentTheme);
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+        });
+    </script>
+</head>
+<body class="d-flex flex-column min-vh-100" style="font-family: 'Inter', sans-serif;">
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="btn btn-dark rounded-circle position-fixed bottom-0 end-0 m-4 shadow-lg d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; z-index: 1050; transition: all 0.3s ease;" aria-label="Toggle dark mode" onclick="window.toggleTheme()">
+        <i class="fas fa-moon fs-5" id="theme-icon"></i>
+    </button>
+    
+    <!-- Here Astro will inject the specific content of the page (index.astro or Markdown files) -->
+    <slot />
+
+    <footer class="py-5 mt-auto text-center text-muted-custom" style="background-color: #f8f9fa; border-top: 1px solid rgba(0,0,0,0.05);">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Emiliano Finetti | <span>{footerText}</span></p>
+        </div>
+    </footer>
+    
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="position-fixed bottom-0 start-0 w-100 bg-dark text-white p-3 text-center d-none" style="z-index: 1050; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);">
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
+            <span class="fs-6">
+                <i class="fas fa-cookie-bite me-2 text-primary"></i>
+                <span>{cookieBannerText}</span>
+                <a href="/cookie-policy.html" class="text-primary text-decoration-none ms-1">{cookieBannerLink}</a>.
+            </span>
+            <button id="acceptCookies" class="btn btn-primary btn-sm rounded-pill px-4 fw-medium">{cookieBannerBtn}</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cookieBanner = document.getElementById('cookieBanner');
+            const acceptBtn = document.getElementById('acceptCookies');
+            if (!localStorage.getItem('cookiesAccepted')) {
+                cookieBanner.classList.remove('d-none');
+            }
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieBanner.classList.add('d-none');
+            });
+        });
+    </script>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

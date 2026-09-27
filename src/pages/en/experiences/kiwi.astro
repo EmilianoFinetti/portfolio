@@ -1,0 +1,48 @@
+---
+import ExperienceLayout from '../../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { Image } from 'astro:assets';
+
+// Import Logo
+import kiwiLogo from '../../../assets/images/kiwi_logo.png';
+---
+
+<ExperienceLayout 
+    pageLang="en"
+    pageTitle="Kiwi S.R.L. | Emiliano Finetti"
+    pageDescription="Emiliano Finetti at Kiwi S.R.L.: internship in web front-end and back-end development."
+    experienceUrl="/en/#experiences"
+    backToExperienceText="Back to Experiences"
+    companyName="Kiwi S.R.L."
+    visitCompanyText="Visit the website"
+    role="Web Developer"
+    duration="Jun 2018 - Aug 2018"
+    companyUrl="https://www.kiwi.it/"
+    projectsSectionTitle="Projects"
+>
+    <!-- Logo -->
+    <Image slot="logo" src={kiwiLogo} alt="Kiwi S.R.L." class="img-fluid" />
+
+    <!-- Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            First professional experience in the field of web development through a training internship. I had the opportunity to interact with the dynamics of a real work environment, contributing to full-stack activities for the company's software solutions.
+        </p>
+    </div>
+
+    <!-- Projects -->
+    <div slot="projects">
+    
+        <ProjectCard 
+            title="Development of an Online Management System" 
+            technologies={['Web Development', 'Front-end', 'Back-end', 'Management Systems']}
+            hasImages={false}
+        >
+            <p slot="description">
+                During the internship period, I actively participated in the development and maintenance of an online management system.<br><br>
+                My contribution was divided between the development of <strong>front-end</strong> interfaces and the implementation of <strong>back-end</strong> logic, allowing me to understand the client-server architecture in a production context. This experience was fundamental for consolidating my programming skills and learning to collaborate on an existing codebase within a development team.
+            </p>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>
