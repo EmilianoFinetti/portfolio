@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.emilianofinetti.com/sitemap.xml
+Sitemap: https://www.emilianofinetti.com/sitemap-index.xml

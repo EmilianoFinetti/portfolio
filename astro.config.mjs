@@ -3,7 +3,11 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://www.emilianofinetti.com', 
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/404')
+    })
+  ],
   i18n: {
     defaultLocale: 'it',
     locales: ['it', 'en'],
