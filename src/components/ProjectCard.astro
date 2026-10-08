@@ -7,11 +7,11 @@ const {
     reverse = false } = Astro.props;
 ---
 
-<div class={`row gy-4 mb-5 pb-5 align-items-center project-row ${reverse ? 'flex-md-row-reverse' : ''}`}>
+<div class={`row gy-5 mb-5 pb-5 align-items-center project-row ${reverse ? 'flex-md-row-reverse' : ''}`}>
     <!-- Column Text and Technologies -->
-    <div class={hasImages ? "col-md-5" : "col-md-12"}>
-        <h3 class="fw-bold text-dark mb-3">{title}</h3>
-        <div class="text-muted-custom mb-4" style="line-height: 1.7;">
+    <div class={hasImages ? "col-lg-5" : "col-12"}>
+        <h3 class="fw-bold text-dark mb-3 fs-2">{title}</h3>
+        <div class="text-muted-custom mb-4" style="line-height: 1.75;">
             <slot name="description" />
         </div>
 
@@ -21,27 +21,44 @@ const {
             ))}
         </div>
 
-        <div class="mt-4">
-            {projectGithubUrl && (
+        {projectGithubUrl && (
+            <div class="mt-4">
                 <a href={projectGithubUrl} target="_blank" rel="noopener" class="btn btn-outline-secondary rounded-pill px-4 fw-medium">
                     <i class="fab fa-github me-2"></i> View on GitHub
                 </a>
-            )}
-        </div>
+            </div>
+        )}
     </div>
 
-    <!-- Column Carousel Images -->
+    <!-- Column Modern Carousel Images -->
     {hasImages && (
-        <div class="col-md-7">
-            <div class="vanilla-carousel-container position-relative">
-                <div class="vanilla-carousel">
-                    <slot name="images" />
-                </div>
-            
-                <!-- JS Controls (arrows) -->
-                <div class="carousel-controls mt-3 d-flex justify-content-end gap-2">
-                    <button class="carousel-btn prev-btn shadow-sm" aria-label="Precedente"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next-btn shadow-sm" aria-label="Successivo"><i class="fas fa-chevron-right"></i></button>
+        <div class="col-lg-7">
+            <div class="modern-carousel-card">
+                <!-- Carousel Container -->
+                <div class="mockup-window shadow-lg">
+                    <!-- Carousel Canvas Stage -->
+                    <div class="carousel-stage position-relative">
+                        <!-- Floating Glassmorphic Left Arrow -->
+                        <button type="button" class="stage-arrow-btn prev-btn" aria-label="Immagine precedente">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+
+                        <!-- Floating Glassmorphic Right Arrow -->
+                        <button type="button" class="stage-arrow-btn next-btn" aria-label="Immagine successiva">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <!-- Scrollable Track with Images -->
+                        <div class="vanilla-carousel" tabindex="0" role="region" aria-label="Galleria screenshot">
+                            <slot name="images" />
+                        </div>
+                        <!-- Floating Centered Pill Pagination Dots -->
+                        <div class="carousel-pill-dots-overlay" role="tablist" aria-label="Navigazione slide">
+                            <div class="carousel-pill-dots">
+                                <!-- Injected dynamically via JS based on images count -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,20 +66,41 @@ const {
 </div>
 
 <style>
+    .modern-carousel-card {
+        position: relative;
+    }
+
+    /* Mockup Window Container */
+    .mockup-window {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 16px 40px -10px var(--card-shadow), 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Carousel Stage */
+    .carousel-stage {
+        background-color: #0b0f19;
+        overflow: hidden;
+    }
+
     .vanilla-carousel {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
-        gap: 1rem;
-        border-radius: 16px;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        outline: none;
     }
+
     .vanilla-carousel::-webkit-scrollbar {
         display: none;
     }
-    
+
+    /* Images within Stage */
     .vanilla-carousel :global(img) {
         flex: 0 0 100%;
         width: 100%;
@@ -70,56 +108,357 @@ const {
         aspect-ratio: 16 / 9;
         object-fit: cover;
         scroll-snap-align: center;
-        border-radius: 0.5rem;
+        cursor: zoom-in;
+        transition: transform 0.4s ease, filter 0.3s ease;
+        display: block;
     }
 
-    .carousel-btn {
-        background-color: var(--bs-body-bg);
-        color: var(--bs-primary);
-        border: 1px solid var(--bs-border-color);
+    .vanilla-carousel:hover :global(img) {
+        filter: brightness(0.98);
+    }
+
+    /* Floating Glassmorphic Arrow Buttons */
+    .stage-arrow-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
-        width: 45px;
-        height: 45px;
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 0.95rem;
         cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .carousel-btn:hover {
-        background-color: var(--bs-primary);
-        color: #fff;
+        z-index: 10;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0;
+        pointer-events: none;
     }
 
-    @media (min-width: 768px) {
-        .vanilla-carousel {
-            gap: 1.5rem;
+    .carousel-stage:hover .stage-arrow-btn,
+    .stage-arrow-btn:focus-visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    @media (hover: none) {
+        .stage-arrow-btn {
+            opacity: 0.85;
+            pointer-events: auto;
+        }
+    }
+
+    .stage-arrow-btn.prev-btn {
+        left: 14px;
+    }
+
+    .stage-arrow-btn.next-btn {
+        right: 14px;
+    }
+
+    .stage-arrow-btn:hover {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: #ffffff;
+        transform: translateY(-50%) scale(1.12);
+        box-shadow: 0 8px 20px rgba(13, 110, 253, 0.45);
+    }
+
+    .stage-arrow-btn:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+
+    .stage-arrow-btn.disabled {
+        opacity: 0.35 !important;
+        pointer-events: none;
+    }
+
+    /* Floating Centered Pill Dots at Bottom of Carousel */
+    .carousel-pill-dots-overlay {
+        position: absolute;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 6px 12px;
+        border-radius: 9999px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+        pointer-events: auto;
+    }
+
+    :global(.carousel-pill-dots) {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    :global(.carousel-pill-dot) {
+        height: 7px;
+        width: 7px;
+        border-radius: 9999px;
+        background-color: rgba(255, 255, 255, 0.45);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    background-color 0.3s ease,
+                    box-shadow 0.3s ease,
+                    transform 0.25s ease;
+    }
+
+    :global(.carousel-pill-dot:hover) {
+        background-color: rgba(255, 255, 255, 0.85);
+        transform: scale(1.2);
+    }
+
+    :global(.carousel-pill-dot.active) {
+        width: 26px;
+        background-color: var(--primary-color);
+        box-shadow: 0 2px 10px rgba(13, 110, 253, 0.6);
+    }
+
+    @media (max-width: 576px) {
+        :global(.carousel-pill-dot.active) {
+            width: 18px;
         }
     }
 </style>
 
 <script>
-    // Initiliazes all the carousels on the page (even if there are 5 different ones)
-    document.addEventListener('DOMContentLoaded', () => {
-        const containers = document.querySelectorAll('.vanilla-carousel-container');
-        
-        containers.forEach(container => {
-            const carousel = container.querySelector('.vanilla-carousel');
-            const prevBtn = container.querySelector('.prev-btn');
-            const nextBtn = container.querySelector('.next-btn');
+    // Singleton Global Lightbox Initializer
+    function setupGlobalLightbox() {
+        if (document.querySelector('.carousel-lightbox-modal')) return;
 
-            if (!carousel || !prevBtn || !nextBtn) return;
+        const lightbox = document.createElement('div');
+        lightbox.className = 'carousel-lightbox-modal';
+        lightbox.setAttribute('role', 'dialog');
+        lightbox.setAttribute('aria-modal', 'true');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightbox.innerHTML = `
+            <div class="lightbox-backdrop"></div>
+            <div class="lightbox-dialog">
+                <button type="button" class="lightbox-close-btn" aria-label="Chiudi finestra">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button type="button" class="lightbox-nav-btn lightbox-prev-btn" aria-label="Precedente">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button type="button" class="lightbox-nav-btn lightbox-next-btn" aria-label="Successivo">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="lightbox-main">
+                    <img class="lightbox-img" src="" alt="" />
+                    <div class="lightbox-info-bar">
+                        <span class="lightbox-caption"></span>
+                        <span class="lightbox-counter"></span>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
 
-            // Dinamically calculate how much to scroll (the width of an element)
-            const scrollAmount = () => carousel.clientWidth * 0.9; 
+        // Lightbox state
+        let currentItems = [];
+        let currentIndex = 0;
 
-            nextBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-            });
+        const imgEl = lightbox.querySelector('.lightbox-img');
+        const captionEl = lightbox.querySelector('.lightbox-caption');
+        const counterEl = lightbox.querySelector('.lightbox-counter');
+        const prevBtn = lightbox.querySelector('.lightbox-prev-btn');
+        const nextBtn = lightbox.querySelector('.lightbox-next-btn');
+        const closeBtn = lightbox.querySelector('.lightbox-close-btn');
+        const backdrop = lightbox.querySelector('.lightbox-backdrop');
 
-            prevBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-            });
+        function updateLightboxView() {
+            if (!currentItems.length) return;
+            const item = currentItems[currentIndex];
+            imgEl.src = item.src;
+            imgEl.alt = item.alt;
+            captionEl.textContent = item.alt || 'Screenshot';
+            counterEl.textContent = `${currentIndex + 1} / ${currentItems.length}`;
+
+            prevBtn.style.visibility = currentIndex > 0 ? 'visible' : 'hidden';
+            nextBtn.style.visibility = currentIndex < currentItems.length - 1 ? 'visible' : 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', handleLightboxKey);
+        }
+
+        function handleLightboxKey(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight' && currentIndex < currentItems.length - 1) {
+                currentIndex++;
+                updateLightboxView();
+            }
+            if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                currentIndex--;
+                updateLightboxView();
+            }
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        backdrop.addEventListener('click', closeLightbox);
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateLightboxView();
+            }
         });
-    });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < currentItems.length - 1) {
+                currentIndex++;
+                updateLightboxView();
+            }
+        });
+
+        // Global opening hook
+        window.__openCarouselLightbox = function(items, index) {
+            currentItems = items;
+            currentIndex = index;
+            updateLightboxView();
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            document.addEventListener('keydown', handleLightboxKey);
+        };
+    }
+
+    // Initialize all carousels on the page
+    function initCarousels() {
+        setupGlobalLightbox();
+
+        const windowMockups = document.querySelectorAll('.mockup-window');
+
+        windowMockups.forEach(mockup => {
+            const carousel = mockup.querySelector('.vanilla-carousel');
+            if (!carousel) return;
+
+            const images = Array.from(carousel.querySelectorAll('img'));
+            if (!images.length) return;
+
+            const count = images.length;
+            const dotsContainer = mockup.querySelector('.carousel-pill-dots');
+            const prevStageBtn = mockup.querySelector('.stage-arrow-btn.prev-btn');
+            const nextStageBtn = mockup.querySelector('.stage-arrow-btn.next-btn');
+
+            let currentIndex = 0;
+
+            // Generate interactive pill dots
+            if (dotsContainer) {
+                dotsContainer.innerHTML = '';
+                images.forEach((img, idx) => {
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.className = `carousel-pill-dot ${idx === 0 ? 'active' : ''}`;
+                    dot.setAttribute('aria-label', `Vai a slide ${idx + 1}`);
+                    dot.addEventListener('click', () => {
+                        scrollToIndex(idx);
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            const pillDots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.carousel-pill-dot')) : [];
+
+            function updateUI(idx) {
+                currentIndex = idx;
+
+                // Update pill dots
+                pillDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === idx);
+                });
+
+                // Update stage buttons disabled state
+                const isStart = idx === 0;
+                const isEnd = idx === count - 1;
+
+                if (prevStageBtn) prevStageBtn.classList.toggle('disabled', isStart);
+                if (nextStageBtn) nextStageBtn.classList.toggle('disabled', isEnd);
+            }
+
+            function scrollToIndex(idx) {
+                const target = images[idx];
+                if (!target) return;
+                target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                updateUI(idx);
+            }
+
+            // Scroll listener with debouncing
+            let scrollTimeout;
+            carousel.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    const scrollLeft = carousel.scrollLeft;
+                    const stageWidth = carousel.clientWidth;
+                    const calculatedIndex = Math.min(
+                        count - 1,
+                        Math.max(0, Math.round(scrollLeft / stageWidth))
+                    );
+                    if (calculatedIndex !== currentIndex) {
+                        updateUI(calculatedIndex);
+                    }
+                }, 40);
+            });
+
+            // Arrow button actions
+            function goPrev() {
+                if (currentIndex > 0) scrollToIndex(currentIndex - 1);
+            }
+
+            function goNext() {
+                if (currentIndex < count - 1) scrollToIndex(currentIndex + 1);
+            }
+
+            if (prevStageBtn) prevStageBtn.addEventListener('click', goPrev);
+            if (nextStageBtn) nextStageBtn.addEventListener('click', goNext);
+
+            // Keyboard navigation on carousel stage
+            carousel.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    goNext();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    goPrev();
+                }
+            });
+
+            // Lightbox opening items
+            const lightboxItems = images.map(img => ({
+                src: img.currentSrc || img.src,
+                alt: img.alt || ''
+            }));
+
+            // Click on image opens lightbox
+            images.forEach((img, idx) => {
+                img.addEventListener('click', () => {
+                    if (window.__openCarouselLightbox) {
+                        window.__openCarouselLightbox(lightboxItems, idx);
+                    }
+                });
+            });
+
+            // Initial UI state
+            updateUI(0);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', initCarousels);
+    document.addEventListener('astro:page-load', initCarousels);
 </script>

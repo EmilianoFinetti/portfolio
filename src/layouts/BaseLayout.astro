@@ -2,248 +2,335 @@
 // Astro component for the base layout of the website. It includes the HTML structure, head metadata, and footer. It also handles theme toggling and cookie banner functionality.
 
 // Importing the global CSS for the website
-import '../assets/css/style.css';
+import "../assets/css/style.css";
+import Navbar from "../components/Navbar.astro";
 
 // Destructuring the props passed to the BaseLayout component
-const { 
-    title, 
-    description, 
-    lang = 'it', 
-    footerText, 
-    cookieBannerText, 
-    cookieBannerLink, 
-    cookieBannerBtn 
+const {
+    title,
+    description,
+    lang = "it",
+    footerText,
+    cookieBannerText,
+    cookieBannerLink,
+    cookieBannerBtn,
+    isSubpage = false,
+    backUrl = "/",
+    backText = "",
 } = Astro.props;
 
 // Current canonical and alternate URLs
-const siteUrl = Astro.site ? Astro.site.origin : 'https://www.emilianofinetti.com';
+const siteUrl = Astro.site
+    ? Astro.site.origin
+    : "https://www.emilianofinetti.com";
 const currentPath = Astro.url.pathname;
 const canonicalUrl = new URL(currentPath, siteUrl).href;
 
 let itPath = currentPath;
 let enPath = currentPath;
 
-if (lang === 'en') {
-    itPath = currentPath.replace(/^\/en(?:\/|$)/, '/') || '/';
+if (lang === "en") {
+    itPath = currentPath.replace(/^\/en(?:\/|$)/, "/") || "/";
     enPath = currentPath;
 } else {
     itPath = currentPath;
-    enPath = '/en' + (currentPath === '/' ? '/' : currentPath);
+    enPath = "/en" + (currentPath === "/" ? "/" : currentPath);
 }
 
 const itUrl = new URL(itPath, siteUrl).href;
 const enUrl = new URL(enPath, siteUrl).href;
-const socialImageUrl = new URL('/assets/images/EmilianoFinetti.jpg', siteUrl).href;
-const cookiePolicyUrl = lang === 'en' ? '/en/cookie-policy/' : '/cookie-policy/';
+const socialImageUrl = new URL("/assets/images/EmilianoFinetti.jpg", siteUrl)
+    .href;
+const cookiePolicyUrl =
+    lang === "en" ? "/en/cookie-policy/" : "/cookie-policy/";
 const currentYear = new Date().getFullYear();
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang={lang} data-bs-theme="auto" translate="no">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content={description}>
-    <meta name="keywords" content="Emiliano Finetti, Computer Engineer, Back-end Developer, Python, Django, C++, Politecnico di Milano, Software Engineering">
-    <meta name="author" content="Emiliano Finetti">
-    <title>{title}</title>
-    
-    <link rel="canonical" href={canonicalUrl}>
-    <link rel="alternate" hreflang="it" href={itUrl}>
-    <link rel="alternate" hreflang="en" href={enUrl}>
-    <link rel="alternate" hreflang="x-default" href={itUrl}>
-    
-    <!-- Open Graph & Twitter -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content={canonicalUrl}>
-    <meta property="og:title" content={title}>
-    <meta property="og:description" content={description}>
-    <meta property="og:image" content={socialImageUrl}>
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content={canonicalUrl}>
-    <meta property="twitter:title" content={title}>
-    <meta property="twitter:description" content={description}>
-    <meta property="twitter:image" content={socialImageUrl}>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    
-    <!-- Bootstrap, FontAwesome & Google Fonts -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <meta
+            name="keywords"
+            content="Emiliano Finetti, Computer Engineer, Back-end Developer, Python, Django, C++, Politecnico di Milano, Software Engineering"
+        />
+        <meta name="author" content="Emiliano Finetti" />
+        <title>{title}</title>
 
-    <!-- Language Router Script -->
-    <script is:inline>
-        (function() {
-            const storedLang = localStorage.getItem('preferred-lang');
-            const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-            const currentPath = window.location.pathname;
-            const isCurrentlyEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hreflang="it" href={itUrl} />
+        <link rel="alternate" hreflang="en" href={enUrl} />
+        <link rel="alternate" hreflang="x-default" href={itUrl} />
 
-            if (storedLang) {
-                // Se l'utente ha salvato una preferenza esplicita, rispettala sempre
-                if (storedLang === 'en' && !isCurrentlyEnglish) {
-                    window.location.replace('/en' + (currentPath === '/' ? '/' : currentPath));
-                } else if (storedLang === 'it' && isCurrentlyEnglish) {
-                    const newPath = currentPath.replace(/^\/en/, '') || '/';
-                    window.location.replace(newPath);
+        <!-- Open Graph & Twitter -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={socialImageUrl} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={canonicalUrl} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={socialImageUrl} />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+        <!-- Bootstrap, FontAwesome & Google Fonts -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Language Router Script -->
+        <script is:inline>
+            (function () {
+                const storedLang = localStorage.getItem("preferred-lang");
+                const browserLang = (
+                    navigator.language ||
+                    navigator.userLanguage ||
+                    ""
+                ).toLowerCase();
+                const currentPath = window.location.pathname;
+                const isCurrentlyEnglish =
+                    currentPath.startsWith("/en/") || currentPath === "/en";
+
+                if (storedLang) {
+                    // Se l'utente ha salvato una preferenza esplicita, rispettala sempre
+                    if (storedLang === "en" && !isCurrentlyEnglish) {
+                        window.location.replace(
+                            "/en" + (currentPath === "/" ? "/" : currentPath),
+                        );
+                    } else if (storedLang === "it" && isCurrentlyEnglish) {
+                        const newPath = currentPath.replace(/^\/en/, "") || "/";
+                        window.location.replace(newPath);
+                    }
+                } else {
+                    // Comportamento iniziale: segue la lingua del browser
+                    const browserWantsItalian = browserLang.startsWith("it");
+
+                    if (!browserWantsItalian && !isCurrentlyEnglish) {
+                        window.location.replace(
+                            "/en" + (currentPath === "/" ? "/" : currentPath),
+                        );
+                    } else if (
+                        browserWantsItalian &&
+                        isCurrentlyEnglish &&
+                        (currentPath === "/en" || currentPath === "/en/")
+                    ) {
+                        window.location.replace("/");
+                    }
                 }
-            } else {
-                // Comportamento iniziale: segue la lingua del browser
-                const browserWantsItalian = browserLang.startsWith('it');
+            })();
 
-                if (!browserWantsItalian && !isCurrentlyEnglish) {
-                    window.location.replace('/en' + (currentPath === '/' ? '/' : currentPath));
-                } else if (browserWantsItalian && isCurrentlyEnglish && (currentPath === '/en' || currentPath === '/en/')) {
-                    window.location.replace('/');
+            window.setLanguage = function (targetLang) {
+                localStorage.setItem("preferred-lang", targetLang);
+                const currentPath = window.location.pathname;
+                const isCurrentlyEnglish =
+                    currentPath.startsWith("/en/") || currentPath === "/en";
+
+                if (targetLang === "en" && !isCurrentlyEnglish) {
+                    window.location.assign(
+                        "/en" + (currentPath === "/" ? "/" : currentPath),
+                    );
+                } else if (targetLang === "it" && isCurrentlyEnglish) {
+                    const target = currentPath.replace(/^\/en/, "") || "/";
+                    window.location.assign(target);
+                }
+            };
+        </script>
+
+        <!-- Theme Toggler Script -->
+        <script is:inline>
+            function updateIcon(theme) {
+                const icon = document.getElementById("theme-icon");
+                const btn = document.getElementById("theme-toggle");
+                if (icon) {
+                    icon.className =
+                        theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+                }
+                if (btn) {
+                    btn.setAttribute(
+                        "aria-label",
+                        theme === "dark"
+                            ? "Toggle light mode"
+                            : "Toggle dark mode",
+                    );
                 }
             }
-        })();
 
-        window.setLanguage = function(targetLang) {
-            localStorage.setItem('preferred-lang', targetLang);
-            const currentPath = window.location.pathname;
-            const isCurrentlyEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
+            function updateTheme() {
+                const storedTheme = localStorage.getItem("theme");
+                const prefersDark = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                ).matches;
+                const theme = storedTheme || (prefersDark ? "dark" : "light");
 
-            if (targetLang === 'en' && !isCurrentlyEnglish) {
-                window.location.assign('/en' + (currentPath === '/' ? '/' : currentPath));
-            } else if (targetLang === 'it' && isCurrentlyEnglish) {
-                const target = currentPath.replace(/^\/en/, '') || '/';
-                window.location.assign(target);
+                document.documentElement.setAttribute("data-bs-theme", theme);
+                if (document.readyState !== "loading") updateIcon(theme);
             }
-        };
-    </script>
 
-    <!-- Theme Toggler Script -->
-    <script is:inline>
-        function updateIcon(theme) {
-            const icon = document.getElementById('theme-icon');
-            const btn = document.getElementById('theme-toggle');
-            if (icon) {
-                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            updateTheme();
+
+            function toggleTheme() {
+                const currentTheme =
+                    document.documentElement.getAttribute("data-bs-theme");
+                const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+                document.documentElement.setAttribute(
+                    "data-bs-theme",
+                    newTheme,
+                );
+                localStorage.setItem("theme", newTheme);
+                updateIcon(newTheme);
             }
-            if (btn) {
-                btn.setAttribute('aria-label', theme === 'dark' ? 'Toggle light mode' : 'Toggle dark mode');
-            }
-        }
 
-        function updateTheme() {
-            const storedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = storedTheme || (prefersDark ? 'dark' : 'light');
-            
-            document.documentElement.setAttribute('data-bs-theme', theme);
-            if (document.readyState !== 'loading') updateIcon(theme);
-        }
+            window.updateTheme = updateTheme;
+            window.toggleTheme = toggleTheme;
 
-        updateTheme();
-
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.documentElement.setAttribute('data-bs-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        }
-
-        window.updateTheme = updateTheme;
-        window.toggleTheme = toggleTheme;
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-            updateIcon(currentTheme);
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-        });
-    </script>
-</head>
-<body class="d-flex flex-column min-vh-100" style="font-family: 'Inter', sans-serif;">
-
-    <!-- Floating Quick Controls (Language Switcher & Theme Toggle) -->
-    <div class="quick-controls" aria-label={lang === 'it' ? 'Controlli lingua e tema' : 'Language and theme controls'}>
-        <nav class="lang-switch-group" aria-label={lang === 'it' ? 'Scelta lingua' : 'Language selection'}>
-            <a 
-                href={itPath} 
-                class={`lang-switch-link ${lang === 'it' ? 'is-active' : ''}`} 
-                aria-label="Italiano" 
-                title="Italiano"
-                aria-current={lang === 'it' ? 'page' : undefined}
-                onclick="localStorage.setItem('preferred-lang', 'it')"
-            >
-                <svg class="flag-icon" viewBox="0 0 3 2" width="20" height="14" aria-hidden="true">
-                    <rect width="1" height="2" fill="#009246" />
-                    <rect width="1" height="2" x="1" fill="#ffffff" />
-                    <rect width="1" height="2" x="2" fill="#ce2b37" />
-                </svg>
-            </a>
-            <a 
-                href={enPath} 
-                class={`lang-switch-link ${lang === 'en' ? 'is-active' : ''}`} 
-                aria-label="English" 
-                title="English"
-                aria-current={lang === 'en' ? 'page' : undefined}
-                onclick="localStorage.setItem('preferred-lang', 'en')"
-            >
-                <svg class="flag-icon" viewBox="0 0 60 30" width="20" height="14" aria-hidden="true">
-                    <clipPath id="uk-diag">
-                        <path d="M30 15h30v15zv15h-30zh-30v-15zv-15h30z"/>
-                    </clipPath>
-                    <path d="M0 0v30h60V0z" fill="#012169"/>
-                    <path d="M0 0l60 30M60 0L0 30" stroke="#ffffff" stroke-width="6"/>
-                    <path d="M0 0l60 30M60 0L0 30" clip-path="url(#uk-diag)" stroke="#C8102E" stroke-width="4"/>
-                    <path d="M30 0v30M0 15h60" stroke="#ffffff" stroke-width="10"/>
-                    <path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/>
-                </svg>
-            </a>
-        </nav>
-        <button 
-            id="theme-toggle" 
-            class="theme-toggle-btn" 
-            aria-label={lang === 'it' ? 'Cambia tema' : 'Toggle theme'} 
-            onclick="window.toggleTheme()"
-        >
-            <i class="fas fa-moon" id="theme-icon"></i>
-        </button>
-    </div>
-    
-    <!-- Here Astro will inject the specific content of the page (index.astro or Markdown files) -->
-    <slot />
-
-    <footer class="py-5 mt-auto text-center text-muted-custom" style="background-color: #f8f9fa; border-top: 1px solid rgba(0,0,0,0.05);">
-        <div class="container">
-            <p class="mb-0">&copy; {currentYear} Emiliano Finetti | <span>{footerText}</span></p>
-        </div>
-    </footer>
-    
-    <!-- Cookie Banner -->
-    <div id="cookieBanner" class="position-fixed bottom-0 start-0 w-100 bg-dark text-white p-3 text-center d-none" style="z-index: 1050; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);">
-        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
-            <span class="fs-6">
-                <i class="fas fa-cookie-bite me-2 text-primary"></i>
-                <span>{cookieBannerText}</span>
-                <a href={cookiePolicyUrl} class="text-primary text-decoration-none ms-1">{cookieBannerLink}</a>.
-            </span>
-            <button id="acceptCookies" class="btn btn-primary btn-sm rounded-pill px-4 fw-medium">{cookieBannerBtn}</button>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cookieBanner = document.getElementById('cookieBanner');
-            const acceptBtn = document.getElementById('acceptCookies');
-            if (!localStorage.getItem('cookiesAccepted')) {
-                cookieBanner.classList.remove('d-none');
-            }
-            acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('cookiesAccepted', 'true');
-                cookieBanner.classList.add('d-none');
+            document.addEventListener("DOMContentLoaded", () => {
+                const currentTheme =
+                    document.documentElement.getAttribute("data-bs-theme");
+                updateIcon(currentTheme);
+                window
+                    .matchMedia("(prefers-color-scheme: dark)")
+                    .addEventListener("change", updateTheme);
             });
-        });
-    </script>
-    
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+        </script>
+    </head>
+    <body
+        class="d-flex flex-column min-vh-100"
+        style="font-family: 'Inter', sans-serif;"
+    >
+        <!-- Modern Glassmorphic Sticky Navbar -->
+        <Navbar
+            lang={lang}
+            itPath={itPath}
+            enPath={enPath}
+            isSubpage={isSubpage}
+            backUrl={backUrl}
+            backText={backText}
+        />
+
+        <!-- Here Astro will inject the specific content of the page (index.astro or Markdown files) -->
+        <slot />
+
+        <footer
+            class="py-5 mt-auto text-center text-muted-custom"
+            style="background-color: #f8f9fa; border-top: 1px solid rgba(0,0,0,0.05);"
+        >
+            <div class="container">
+                <p class="mb-0">
+                    &copy; {currentYear} Emiliano Finetti | <span
+                        >{footerText}</span>
+                </p>
+            </div>
+        </footer>
+
+        <!-- Modern Floating Cookie Banner -->
+        <div
+            id="cookieBanner"
+            class="cookie-toast-container d-none"
+            role="region"
+            aria-label={lang === "en"
+                ? "Cookie Consent Notice"
+                : "Informativa Cookie"}
+        >
+            <div class="cookie-toast shadow-lg">
+                <div class="d-flex align-items-start gap-3">
+                    <div
+                        class="cookie-icon-box flex-shrink-0"
+                        aria-hidden="true"
+                    >
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+
+                    <div class="cookie-toast-content flex-grow-1">
+                        <div
+                            class="d-flex align-items-center justify-content-between gap-2 mb-1"
+                        >
+                            <span class="cookie-toast-title fw-bold">
+                                {
+                                    lang === "en"
+                                        ? "Cookie & Privacy"
+                                        : "Cookie & Privacy"
+                                }
+                            </span>
+                        </div>
+
+                        <p class="cookie-toast-text mb-3">
+                            {cookieBannerText}
+                            <a
+                                href={cookiePolicyUrl}
+                                class="cookie-policy-link ms-1"
+                            >
+                                {cookieBannerLink}
+                            </a>
+                        </p>
+
+                        <div
+                            class="d-flex align-items-center justify-content-end gap-2"
+                        >
+                            <button
+                                id="acceptCookies"
+                                class="btn cookie-accept-btn"
+                            >
+                                <i class="fas fa-check me-1"></i>
+                                {cookieBannerBtn}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function initCookieBanner() {
+                const cookieBanner = document.getElementById("cookieBanner");
+                const acceptBtn = document.getElementById("acceptCookies");
+                if (!localStorage.getItem("cookiesAccepted") && cookieBanner) {
+                    setTimeout(() => {
+                        cookieBanner.classList.remove("d-none");
+                        // Force reflow for transition
+                        void cookieBanner.offsetWidth;
+                        cookieBanner.classList.add("cookie-show");
+                    }, 400);
+                }
+                if (acceptBtn && cookieBanner) {
+                    acceptBtn.addEventListener("click", () => {
+                        localStorage.setItem("cookiesAccepted", "true");
+                        cookieBanner.classList.remove("cookie-show");
+                        cookieBanner.classList.add("cookie-hide");
+                        setTimeout(() => {
+                            cookieBanner.classList.add("d-none");
+                        }, 350);
+                    });
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", initCookieBanner);
+            document.addEventListener("astro:page-load", initCookieBanner);
+        </script>
+
+        <!-- Bootstrap JS Bundle -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    </body>
 </html>

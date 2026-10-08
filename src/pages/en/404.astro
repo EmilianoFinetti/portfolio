@@ -10,14 +10,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     cookieBannerText="This site only uses technical cookies to ensure a better browsing experience."
     cookieBannerLink="Cookie Policy"
     cookieBannerBtn="Got it!"
+    isSubpage={true}
+    backUrl="/en/"
+    backText="Go to Home"
 >
-    <!-- Header specific to the 404 page -->
-    <header class="py-4 border-bottom">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="h4 mb-0 fw-bold text-dark">Emiliano Finetti</h1>
-        </div>
-    </header>
-
     <!-- Main content for the 404 page -->
     <main class="container flex-grow-1 d-flex align-items-center justify-content-center py-5 my-5">
         <div class="text-center">
@@ -27,8 +23,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                 The page you are looking for might have been removed, changed its name, or is temporarily unavailable.
             </p>
             <!-- Link to the root (Home in English) -->
-            <a href="/en/" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
-                <i class="fas fa-home me-2"></i> Go to Home
+            <a href="/en/" class="hero-cta-btn hero-cta-primary mt-2">
+                <i class="fas fa-home"></i> Go to Home
             </a>
         </div>
     </main>

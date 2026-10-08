@@ -1,0 +1,236 @@
+---
+// Modern Glassmorphic Sticky Navbar Component
+const {
+    lang = "it",
+    itPath = "/",
+    enPath = "/en/",
+    isSubpage = false,
+    backUrl = "/",
+    backText = "",
+} = Astro.props;
+
+const homeUrl = lang === "it" ? "/" : "/en/";
+
+const navLinks = [
+    { href: "#about", label: lang === "it" ? "Chi sono" : "About" },
+    {
+        href: "#experiences",
+        label: lang === "it" ? "Esperienze" : "Experience",
+    },
+    { href: "#projects", label: lang === "it" ? "Progetti" : "Projects" },
+    { href: "#skills", label: lang === "it" ? "Competenze" : "Skills" },
+    { href: "#education", label: lang === "it" ? "Formazione" : "Education" },
+];
+
+const defaultBackText = lang === "it" ? "Torna alla Home" : "Back to Home";
+const resolvedBackText = backText || defaultBackText;
+---
+
+<header class="site-header sticky-top">
+    <div
+        class="container d-flex align-items-center justify-content-between py-2 py-md-3"
+    >
+        <!-- Brand / Identity -->
+        <div class="d-flex align-items-center gap-3">
+            <a
+                href={homeUrl}
+                class="navbar-brand-link text-decoration-none d-flex align-items-center gap-2"
+            >
+                <span class="brand-avatar-mini d-none d-xs-flex">EF</span>
+                <span class="brand-name fw-bold">Emiliano Finetti</span>
+            </a>
+
+            {
+                isSubpage && (
+                    <a
+                        href={backUrl}
+                        class="subpage-back-link btn btn-outline-primary btn-sm rounded-pill px-3 fw-medium d-inline-flex align-items-center gap-2 ms-2"
+                    >
+                        <i class="fas fa-arrow-left" />
+                        <span>{resolvedBackText}</span>
+                    </a>
+                )
+            }
+        </div>
+
+        <!-- Desktop Navigation Links (Homepage only) -->
+        {
+            !isSubpage && (
+                <nav
+                    class="desktop-nav d-none d-lg-flex align-items-center gap-1"
+                    aria-label={
+                        lang === "it"
+                            ? "Navigazione principale"
+                            : "Main navigation"
+                    }
+                >
+                    {navLinks.map((link) => (
+                        <a href={link.href} class="desktop-nav-link">
+                            {link.label}
+                        </a>
+                    ))}
+                </nav>
+            )
+        }
+
+        <!-- Right Side: Flags, Theme Toggle, Mobile Menu Button -->
+        <div class="d-flex align-items-center gap-2">
+            <!-- Language Switcher -->
+            <nav
+                class="lang-switch-group"
+                aria-label={lang === "it"
+                    ? "Scelta lingua"
+                    : "Language selection"}
+            >
+                <a
+                    href={itPath}
+                    class={`lang-switch-link ${lang === "it" ? "is-active" : ""}`}
+                    aria-label="Italiano"
+                    title="Italiano"
+                    aria-current={lang === "it" ? "page" : undefined}
+                    onclick="localStorage.setItem('preferred-lang', 'it')"
+                >
+                    <svg
+                        class="flag-icon"
+                        viewBox="0 0 3 2"
+                        width="20"
+                        height="14"
+                        aria-hidden="true"
+                    >
+                        <rect width="1" height="2" fill="#009246"></rect>
+                        <rect width="1" height="2" x="1" fill="#ffffff"></rect>
+                        <rect width="1" height="2" x="2" fill="#ce2b37"></rect>
+                    </svg>
+                </a>
+                <a
+                    href={enPath}
+                    class={`lang-switch-link ${lang === "en" ? "is-active" : ""}`}
+                    aria-label="English"
+                    title="English"
+                    aria-current={lang === "en" ? "page" : undefined}
+                    onclick="localStorage.setItem('preferred-lang', 'en')"
+                >
+                    <svg
+                        class="flag-icon"
+                        viewBox="0 0 60 30"
+                        width="20"
+                        height="14"
+                        aria-hidden="true"
+                    >
+                        <clipPath id="uk-diag-nav">
+                            <path d="M30 15h30v15zv15h-30zh-30v-15zv-15h30z"
+                            ></path>
+                        </clipPath>
+                        <path d="M0 0v30h60V0z" fill="#012169"></path>
+                        <path
+                            d="M0 0l60 30M60 0L0 30"
+                            stroke="#ffffff"
+                            stroke-width="6"></path>
+                        <path
+                            d="M0 0l60 30M60 0L0 30"
+                            clip-path="url(#uk-diag-nav)"
+                            stroke="#C8102E"
+                            stroke-width="4"></path>
+                        <path
+                            d="M30 0v30M0 15h60"
+                            stroke="#ffffff"
+                            stroke-width="10"></path>
+                        <path
+                            d="M30 0v30M0 15h60"
+                            stroke="#C8102E"
+                            stroke-width="6"></path>
+                    </svg>
+                </a>
+            </nav>
+
+            <!-- Theme Toggle -->
+            <button
+                id="theme-toggle"
+                class="theme-toggle-btn"
+                aria-label={lang === "it" ? "Cambia tema" : "Toggle theme"}
+                onclick="window.toggleTheme()"
+            >
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+
+            <!-- Mobile Hamburger Button (Homepage only) -->
+            {
+                !isSubpage && (
+                    <button
+                        id="mobile-nav-toggle"
+                        class="mobile-nav-toggle d-lg-none"
+                        aria-label="Apri menu"
+                        aria-expanded="false"
+                        aria-controls="mobile-nav-drawer"
+                    >
+                        <i class="fas fa-bars" id="mobile-nav-icon" />
+                    </button>
+                )
+            }
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer (Homepage only) -->
+    {
+        !isSubpage && (
+            <div
+                id="mobile-nav-drawer"
+                class="mobile-nav-drawer d-lg-none"
+                hidden
+            >
+                <div class="container py-3 d-flex flex-column gap-2">
+                    {navLinks.map((link) => (
+                        <a href={link.href} class="mobile-nav-link">
+                            {link.label}
+                        </a>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+</header>
+
+<script>
+    // Mobile Drawer Toggle logic
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.getElementById("mobile-nav-toggle");
+        const drawer = document.getElementById("mobile-nav-drawer");
+        const icon = document.getElementById("mobile-nav-icon");
+
+        if (!toggleBtn || !drawer) return;
+
+        function toggleMenu() {
+            const isOpened = toggleBtn.getAttribute("aria-expanded") === "true";
+            if (isOpened) {
+                drawer.setAttribute("hidden", "");
+                toggleBtn.setAttribute("aria-expanded", "false");
+                if (icon) icon.className = "fas fa-bars";
+            } else {
+                drawer.removeAttribute("hidden");
+                toggleBtn.setAttribute("aria-expanded", "true");
+                if (icon) icon.className = "fas fa-times";
+            }
+        }
+
+        toggleBtn.addEventListener("click", toggleMenu);
+
+        // Close drawer when any mobile nav link is clicked
+        const mobileLinks = drawer.querySelectorAll(".mobile-nav-link");
+        mobileLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                drawer.setAttribute("hidden", "");
+                toggleBtn.setAttribute("aria-expanded", "false");
+                if (icon) icon.className = "fas fa-bars";
+            });
+        });
+
+        // Close drawer on resize to desktop
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 992) {
+                drawer.setAttribute("hidden", "");
+                toggleBtn.setAttribute("aria-expanded", "false");
+                if (icon) icon.className = "fas fa-bars";
+            }
+        });
+    });
+</script>

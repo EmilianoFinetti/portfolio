@@ -10,14 +10,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     cookieBannerText="Questo sito utilizza solo cookie tecnici per garantire una migliore esperienza di navigazione."
     cookieBannerLink="Cookie Policy"
     cookieBannerBtn="Capito!"
+    isSubpage={true}
+    backUrl="/"
+    backText="Torna alla Home"
 >
-    <!-- Header specific to the 404 page -->
-    <header class="py-4 border-bottom">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="h4 mb-0 fw-bold text-dark">Emiliano Finetti</h1>
-        </div>
-    </header>
-
     <!-- Main content for the 404 page -->
     <main class="container flex-grow-1 d-flex align-items-center justify-content-center py-5 my-5">
         <div class="text-center">
@@ -27,8 +23,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 La pagina che stai cercando potrebbe essere stata rimossa, aver cambiato nome o essere temporaneamente non disponibile.
             </p>
             <!-- Link to the root (Home in Italian) -->
-            <a href="/" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
-                <i class="fas fa-home me-2"></i> Torna alla Home
+            <a href="/" class="hero-cta-btn hero-cta-primary mt-2">
+                <i class="fas fa-home"></i> Torna alla Home
             </a>
         </div>
     </main>
