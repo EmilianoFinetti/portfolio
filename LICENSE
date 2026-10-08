@@ -1,0 +1,34 @@
+MIT License
+
+Copyright (c) 2026 Emiliano Finetti
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+### Exceptions & Reserved Rights
+
+1. **Personal Identity & Data (GDPR / EU Regulation 2016/679)**:
+   The MIT License applies strictly to the codebase (HTML, CSS, Astro templates, JavaScript, Docker configuration, and styling system). It does **NOT** apply to the author's personal identity, photographs (`EmilianoFinetti.jpg`, `profileImg`), curriculum vitae (`CV - *.pdf`), or original biographical texts. These materials contain personal data and original work, and remain **All Rights Reserved** by Emiliano Finetti.
+
+2. **Third-Party Trademarks & Institutional Logos**:
+   All third-party trademarks, service marks, trade names, and logos (including but not limited to Politecnico di Milano, Università di Trento, Gong Technology, Kiwi Technologies, Polimi Motorcycle Factory, and Istituto Enrico Fermi) are the exclusive intellectual property of their respective owners. Their presence in this repository is strictly for referential/nominative purposes to accurately document personal academic and professional background. They are **NOT** covered by the MIT License.
+
+3. **Reuse & Forking Policy**:
+   You are welcome to fork, adapt, and build upon the architectural code and styling of this website for your own personal portfolio. When doing so, you **must remove or substitute** all personal assets, biographical content, contact details, curriculum vitae files, and third-party logos with your own.
