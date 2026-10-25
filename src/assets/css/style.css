@@ -1088,3 +1088,64 @@ footer {
         padding: 1.15rem;
     }
 }
+
+/* ==========================================================================
+   Accessibility & WCAG AA Contrast Compliance (Score 100)
+   ========================================================================== */
+.text-primary {
+    color: #0956c7 !important;
+}
+
+.badge.bg-primary-subtle {
+    color: #084298 !important;
+    background-color: #e7f1ff !important;
+}
+
+.badge.bg-success-subtle {
+    color: #0a4d2e !important;
+    background-color: #d1e7dd !important;
+}
+
+.badge.bg-info-subtle {
+    color: #055160 !important;
+    background-color: #cff4fc !important;
+}
+
+[data-bs-theme="dark"] .text-primary {
+    color: #6ea8fe !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-primary-subtle {
+    color: #9ec5fe !important;
+    background-color: #031633 !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-success-subtle {
+    color: #75b798 !important;
+    background-color: #051b11 !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-info-subtle {
+    color: #6edff6 !important;
+    background-color: #032830 !important;
+}
+
+/* ==========================================================================
+   Font Display Optimization (Eliminate FOIT & Font-Display warning)
+   ========================================================================== */
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2') format('woff2');
+}
+

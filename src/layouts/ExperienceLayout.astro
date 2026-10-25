@@ -1,9 +1,9 @@
 ---
-import BaseLayout from './BaseLayout.astro';
+import BaseLayout from "./BaseLayout.astro";
 
-const { 
+const {
     pageLang,
-    pageTitle, 
+    pageTitle,
     pageDescription,
     cookieBannerText,
     cookieBannerBtn,
@@ -12,19 +12,23 @@ const {
     backToExperienceText,
     companyName,
     visitCompanyText,
-    role, 
-    duration, 
+    role,
+    duration,
     companyUrl,
-    projectsSectionTitle
+    projectsSectionTitle,
 } = Astro.props;
 ---
 
-<BaseLayout 
+<BaseLayout
     lang={pageLang}
     title={pageTitle}
     description={pageDescription}
-    footerText={pageLang === "it" ? "Creato con ❤" : "Created with ❤"}
-    cookieBannerText={pageLang === "it" ? "Questo sito utilizza solo cookie tecnici per garantire un'esperienza di navigazione migliore." : "This site only uses technical cookies to ensure a better browsing experience."}
+    footerText={pageLang === "it"
+        ? "Creato con passione"
+        : "Created with passion"}
+    cookieBannerText={pageLang === "it"
+        ? "Questo sito utilizza solo cookie tecnici per garantire un'esperienza di navigazione migliore."
+        : "This site only uses technical cookies to ensure a better browsing experience."}
     cookieBannerLink="Cookie Policy"
     cookieBannerBtn={pageLang === "it" ? "Capito!" : "Got it!"}
     isSubpage={true}
@@ -33,20 +37,35 @@ const {
 >
     <main class="container my-5 experience-detail" style="max-width: 1920px">
         <!-- Experience Hero -->
-        <section class="experience-hero mb-5 d-flex flex-column flex-md-row gap-4 align-items-center align-items-md-start">
-            <div class="experience-logo bg-primary rounded shadow-sm d-flex align-items-center justify-content-center p-3" style="width: 150px; height: 150px; flex-shrink: 0;">
-                <slot name="logo" /> <!-- Here we will pass the <Image /> tag from the page -->
+        <section
+            class="experience-hero mb-5 d-flex flex-column flex-md-row gap-4 align-items-center align-items-md-start"
+        >
+            <div
+                class="experience-logo bg-primary rounded shadow-sm d-flex align-items-center justify-content-center p-3"
+                style="width: 150px; height: 150px; flex-shrink: 0;"
+            >
+                <slot name="logo" />
+                <!-- Here we will pass the <Image /> tag from the page -->
             </div>
             <div>
                 <p class="text-primary fw-semibold mb-2">{role} | {duration}</p>
                 <h1 class="display-5 fw-bold text-dark mb-3">{companyName}</h1>
-                <slot name="context" /> <!-- Here you will write the general context -->
-                
-                {companyUrl && (
-                    <a href={companyUrl} target="_blank" rel="noopener" class="btn btn-outline-secondary mt-3 rounded-pill px-4">
-                        <i class="fas fa-arrow-up-right-from-square me-2"></i> {visitCompanyText}
-                    </a>
-                )}
+                <slot name="context" />
+                <!-- Here you will write the general context -->
+
+                {
+                    companyUrl && (
+                        <a
+                            href={companyUrl}
+                            target="_blank"
+                            rel="noopener"
+                            class="btn btn-outline-secondary mt-3 rounded-pill px-4"
+                        >
+                            <i class="fas fa-arrow-up-right-from-square me-2" />{" "}
+                            {visitCompanyText}
+                        </a>
+                    )
+                }
             </div>
         </section>
 
@@ -54,10 +73,14 @@ const {
 
         <!-- Projects Section -->
         <section class="projects-section">
-            <h2 class="h3 fw-bold text-dark mb-5"><i class="fas fa-folder-open text-primary me-2"></i>{projectsSectionTitle}</h2>
-            
-            <slot name="projects" /> <!-- Here we will inject the individual ProjectCard -->
-            
+            <h2 class="h3 fw-bold text-dark mb-5">
+                <i class="fas fa-folder-open text-primary me-2"></i>{
+                    projectsSectionTitle
+                }
+            </h2>
+
+            <slot name="projects" />
+            <!-- Here we will inject the individual ProjectCard -->
         </section>
     </main>
 </BaseLayout>
