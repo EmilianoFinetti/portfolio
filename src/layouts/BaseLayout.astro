@@ -97,21 +97,44 @@ const currentYear = new Date().getFullYear();
             rel="stylesheet"
         />
 
+        <!-- Structured Data (JSON-LD) -->
+        <script type="application/ld+json" is:inline set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Emiliano Finetti",
+            "url": canonicalUrl,
+            "image": socialImageUrl,
+            "jobTitle": lang === "en" ? "Computer Engineer & Back-end Developer" : "Ingegnere Informatico & Sviluppatore Back-end",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Politecnico di Milano"
+            },
+            "alumniOf": [
+                {
+                    "@type": "EducationalOrganization",
+                    "name": "Politecnico di Milano"
+                },
+                {
+                    "@type": "EducationalOrganization",
+                    "name": "Università di Trento"
+                }
+            ],
+            "sameAs": [
+                "https://www.linkedin.com/in/emiliano-finetti/",
+                "https://github.com/EmilianoFinetti"
+            ]
+        })} />
+
         <!-- Language Router Script -->
         <script is:inline>
             (function () {
                 const storedLang = localStorage.getItem("preferred-lang");
-                const browserLang = (
-                    navigator.language ||
-                    navigator.userLanguage ||
-                    ""
-                ).toLowerCase();
                 const currentPath = window.location.pathname;
                 const isCurrentlyEnglish =
                     currentPath.startsWith("/en/") || currentPath === "/en";
 
                 if (storedLang) {
-                    // Se l'utente ha salvato una preferenza esplicita, rispettala sempre
+                    // Se l'utente ha salvato una preferenza esplicita in precedenza, rispettala
                     if (storedLang === "en" && !isCurrentlyEnglish) {
                         window.location.replace(
                             "/en" + (currentPath === "/" ? "/" : currentPath),
@@ -119,21 +142,6 @@ const currentYear = new Date().getFullYear();
                     } else if (storedLang === "it" && isCurrentlyEnglish) {
                         const newPath = currentPath.replace(/^\/en/, "") || "/";
                         window.location.replace(newPath);
-                    }
-                } else {
-                    // Comportamento iniziale: segue la lingua del browser
-                    const browserWantsItalian = browserLang.startsWith("it");
-
-                    if (!browserWantsItalian && !isCurrentlyEnglish) {
-                        window.location.replace(
-                            "/en" + (currentPath === "/" ? "/" : currentPath),
-                        );
-                    } else if (
-                        browserWantsItalian &&
-                        isCurrentlyEnglish &&
-                        (currentPath === "/en" || currentPath === "/en/")
-                    ) {
-                        window.location.replace("/");
                     }
                 }
             })();
@@ -327,10 +335,6 @@ const currentYear = new Date().getFullYear();
             document.addEventListener("astro:page-load", initCookieBanner);
         </script>
 
-        <!-- Bootstrap JS Bundle -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+
     </body>
 </html>
