@@ -1148,4 +1148,32 @@ footer {
     font-display: swap;
     src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2') format('woff2');
 }
-
+
+.project-cover-thesis {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0b1a2c 0%, #2e1a65 50%, #6f42c1 100%);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.text-purple {
+    color: #5b21b6 !important;
+}
+
+.badge.bg-purple-subtle {
+    color: #5b21b6 !important;
+    background-color: #f3e8ff !important;
+}
+
+[data-bs-theme="dark"] .text-purple {
+    color: #c084fc !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-purple-subtle {
+    color: #c084fc !important;
+    background-color: #21133b !important;
+}

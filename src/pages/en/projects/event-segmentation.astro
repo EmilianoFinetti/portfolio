@@ -1,0 +1,69 @@
+---
+import ExperienceLayout from '../../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+---
+
+<ExperienceLayout 
+    pageLang="en"
+    pageTitle="Automatic Event Segmentation | Emiliano Finetti"
+    pageDescription="Bachelor's Thesis in Computer Engineering: automatic video event segmentation based on Event Segmentation Theory (YOLOv8, SVM, PELT)."
+    experienceUrl="/en/#projects"
+    backToExperienceText="Back to Projects"
+    companyName="Automatic Event Segmentation"
+    visitCompanyText="Download Thesis (PDF - IT)"
+    role="Bachelor's Thesis | University of Trento"
+    duration="A.Y. 2023 / 2024"
+    companyUrl="/assets/files/Finetti_Emiliano_laurea_2024.pdf"
+    projectsSectionTitle="Details"
+>
+    <!-- Logo: using FontAwesome icons -->
+    <div slot="logo" class="d-flex align-items-center justify-content-center gap-3 w-100 h-100 text-white">
+        <i class="fas fa-brain" style="font-size: 3.2rem;"></i>
+        <i class="fas fa-video" style="font-size: 3.2rem;"></i>
+    </div>
+
+    <!-- Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            Bachelor's Thesis in Computer, Communications and Electronic Engineering at the <strong>University of Trento</strong> (Supervisor: Prof. Giovanna Varni).<br><br>
+            This research addresses the challenge of <strong>automatic event segmentation in video streams</strong> by drawing on cognitive principles from <em>Event Segmentation Theory (EST)</em>, overcoming the limitations of traditional fixed-length sliding windows to identify more natural, human-aligned action boundaries.
+        </p>
+    </div>
+
+    <!-- Technical Details -->
+    <div slot="projects">
+        
+        <ProjectCard 
+            title="Dataset Construction, Pose Estimation & Preprocessing" 
+            technologies={['Python', 'YOLOv8', 'Computer Vision', 'FFmpeg', 'ELAN', 'Savitzky-Golay Filter', 'JSON']}
+            hasImages={false}
+        >
+            <p slot="description">
+                To train and benchmark the segmentation pipelines, a <strong>custom dataset of 28 videos</strong> was recorded across three human-object interaction scenarios (setting a table, preparing a moka coffee pot, and boxing items), standardized via <strong>FFmpeg</strong> to 720x1280 resolution at 30 fps.<br><br>
+                Every video was manually annotated frame-by-frame using <strong>ELAN</strong> to establish the ground-truth event boundaries and interaction modalities.<br><br>
+                Using <strong>Python and YOLOv8</strong>, upper-body <strong>human pose keypoints</strong> and <strong>object bounding boxes</strong> were extracted for each frame, structured into hierarchical JSON files, and smoothed using a <strong>Savitzky-Golay polynomial filter</strong> to eliminate high-frequency velocity noise while preserving kinematic peaks.
+            </p>
+        </ProjectCard>
+
+        <ProjectCard 
+            title="Segmentation Algorithms & Experimental Evaluation" 
+            technologies={['Machine Learning', 'SVM (RBF Kernel)', 'PCA', 'PELT', 'Time Series Analysis', 'Cross-Validation']}
+            hasImages={false}
+        >
+            <p slot="description">
+                Three distinct algorithmic approaches were implemented and evaluated using a <em>leave-one-video-out</em> cross-validation strategy and the <strong>F1-score</strong> metric:<br><br>
+                • <strong>Kinetic Energy Thresholding</strong>: a baseline method detecting transitions between stillness and motion by optimizing thresholds across quintiles of the total kinetic energy distribution, achieving consistent and robust performance (<strong>mean F1 of 0.72</strong>).<br>
+                • <strong>Supervised Method (SVM)</strong>: a <em>Support Vector Machine</em> with an RBF kernel trained on 10 EST-inspired spatio-temporal features (subject-object Euclidean distances, hand-to-hand/nose distances, kinetic energy), combined with <strong>PCA</strong> dimensionality reduction (retaining 90% variance) and post-processing filtering, achieving <strong>near-1.0 precision</strong> and natural event boundaries (<strong>mean F1 of 0.68</strong>).<br>
+                • <strong>Unsupervised Method (PELT)</strong>: an unsupervised change-point detection pipeline based on <strong>Pruned Exact Linear Time</strong> applied directly to the feature time series without labeled training data, analyzing its trade-offs and sensitivity to human annotation jitter.
+            </p>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>
+
+<style>
+    :global(.experience-logo) {
+        background: linear-gradient(135deg, #2e1a65 0%, #6f42c1 100%) !important;
+    }
+</style>
+

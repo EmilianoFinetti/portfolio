@@ -1,0 +1,69 @@
+---
+import ExperienceLayout from '../../layouts/ExperienceLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+---
+
+<ExperienceLayout 
+    pageLang="it"
+    pageTitle="Segmentazione Automatica ad Eventi | Emiliano Finetti"
+    pageDescription="Tesi di Laurea in Ingegneria Informatica: segmentazione automatica ad eventi nei video basata sull'Event Segmentation Theory (YOLOv8, SVM, PELT)."
+    experienceUrl="/#projects"
+    backToExperienceText="Torna ai progetti"
+    companyName="Segmentazione Automatica ad Eventi"
+    visitCompanyText="Scarica la Tesi (PDF)"
+    role="Tesi di Laurea Triennale | Università di Trento"
+    duration="A.A. 2023 / 2024"
+    companyUrl="/assets/files/Finetti_Emiliano_laurea_2024.pdf"
+    projectsSectionTitle="Dettagli"
+>
+    <!-- Logo: using FontAwesome icons -->
+    <div slot="logo" class="d-flex align-items-center justify-content-center gap-3 w-100 h-100 text-white">
+        <i class="fas fa-brain" style="font-size: 3.2rem;"></i>
+        <i class="fas fa-video" style="font-size: 3.2rem;"></i>
+    </div>
+
+    <!-- Context -->
+    <div slot="context">
+        <p class="lead text-muted-custom mb-0">
+            Elaborato finale di Laurea in Ingegneria Informatica, delle Comunicazioni ed Elettronica presso l'<strong>Università di Trento</strong> (Supervisore: Prof.ssa Giovanna Varni).<br><br>
+            Lo studio affronta il problema della <strong>segmentazione automatica di flussi video in eventi discreti</strong> ispirandosi ai principi cognitivi dell'<em>Event Segmentation Theory (EST)</em>, superando i limiti degli approcci tradizionali basati su finestre temporali di lunghezza fissa per ottenere confini d'azione più naturali e fedeli alla percezione umana.
+        </p>
+    </div>
+
+    <!-- Technical Details -->
+    <div slot="projects">
+        
+        <ProjectCard 
+            title="Costruzione Dataset, Pose Estimation e Preprocessing" 
+            technologies={['Python', 'YOLOv8', 'Computer Vision', 'FFmpeg', 'ELAN', 'Savitzky-Golay Filter', 'JSON']}
+            hasImages={false}
+        >
+            <p slot="description">
+                Per addestrare e valutare gli algoritmi è stato realizzato un <strong>dataset dedicato di 28 video</strong> articolato su tre diversi scenari d'interazione uomo-oggetto (apparecchiamento della tavola, preparazione della caffettiera e inscatolamento di oggetti), ricampionati tramite <strong>FFmpeg</strong> a 720x1280 pixel e 30 fps.<br><br>
+                Ogni sequenza è stata annotata manualmente frame per frame mediante il software <strong>ELAN</strong> per definire il <em>ground truth</em> dei confini (<em>boundaries</em>) e le modalità d'interazione.<br><br>
+                Successivamente, tramite <strong>Python e YOLOv8</strong>, sono stati estratti per ciascun frame i <strong>keypoints della posa corporea</strong> (concentrandosi sulla parte superiore del corpo) e i <strong>bounding box degli oggetti</strong> in scena, serializzando i dati in strutture gerarchiche JSON e applicando il <strong>filtro polinomiale di Savitzky-Golay</strong> per ridurre il rumore sulle variazioni di velocità.
+            </p>
+        </ProjectCard>
+
+        <ProjectCard 
+            title="Algoritmi di Segmentazione e Analisi Sperimentale" 
+            technologies={['Machine Learning', 'SVM (RBF Kernel)', 'PCA', 'PELT', 'Time Series Analysis', 'Cross-Validation']}
+            hasImages={false}
+        >
+            <p slot="description">
+                Sono stati implementati e confrontati tre approcci algoritmici mediante validazione incrociata <em>leave-one-video-out</em> e metrica <strong>F1-score</strong>:<br><br>
+                • <strong>Metodo a soglia sull'energia cinetica</strong>: approccio basato sull'individuazione delle transizioni tra stasi e movimento tramite selezione automatica della soglia sui quintili della distribuzione di energia cinetica totale, ottenendo prestazioni solide e costanti (<strong>F1 media di 0.72</strong>).<br>
+                • <strong>Metodo supervisionato (SVM)</strong>: classificatore <em>Support Vector Machine</em> con kernel RBF addestrato su un vettore di 10 feature spazio-temporali ispirate all'EST (distanze euclidee soggetto-oggetti, mani-volto, energia cinetica), ridotto dimensionalmente tramite <strong>PCA</strong> (90% della varianza) e rifinito con un filtro di post-processing, raggiungendo una <strong>precisione prossima a 1.0</strong> e segmentazioni più naturali (<strong>F1 media di 0.68</strong>).<br>
+                • <strong>Metodo non supervisionato (PELT)</strong>: applicazione dell'algoritmo di <em>change-point detection</em> <strong>Pruned Exact Linear Time</strong> direttamente sulle serie temporali delle feature senza addestramento supervisionato, analizzandone criticità e sensibilità rispetto alla tolleranza temporale del ground truth.
+            </p>
+        </ProjectCard>
+
+    </div>
+</ExperienceLayout>
+
+<style>
+    :global(.experience-logo) {
+        background: linear-gradient(135deg, #2e1a65 0%, #6f42c1 100%) !important;
+    }
+</style>
+
